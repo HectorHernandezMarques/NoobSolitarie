@@ -13,5 +13,4 @@
 #define PILES_NUMBER 7
 #define GAME_MODE 3
 
-
 #endif /* DEFINITIONS_H_ */

@@ -24,11 +24,19 @@ public:
 	char printSuit();
 	std::string printNumber();
 
-	void setSuit(int suit) { this->suit = suit; }
-	void setNumber(int number) { this->number = number; }
+	void setSuit(int suit) {
+		this->suit = suit;
+	}
+	void setNumber(int number) {
+		this->number = number;
+	}
 
-	int getSuit() { return this->suit; }
-	int getNumber() { return this->number; }
+	int getSuit() {
+		return this->suit;
+	}
+	int getNumber() {
+		return this->number;
+	}
 };
 
 #endif /* CARD_H_ */

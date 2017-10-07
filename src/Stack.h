@@ -30,8 +30,12 @@ public:
 	virtual Node<Card>* checkRemove(int index);
 	virtual std::string print();
 
-	int getCardsNumber() { return this->cardsNumber; }
-	void setCardsNumber(int cardsNumber) { this->cardsNumber = cardsNumber; }
+	int getCardsNumber() {
+		return this->cardsNumber;
+	}
+	void setCardsNumber(int cardsNumber) {
+		this->cardsNumber = cardsNumber;
+	}
 };
 
 #endif /* STACK_H_ */

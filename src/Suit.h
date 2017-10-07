@@ -11,7 +11,7 @@
 #include "Stack.h"
 #include <string>
 
-class Suit: public Stack{
+class Suit: public Stack {
 
 public:
 	Suit();

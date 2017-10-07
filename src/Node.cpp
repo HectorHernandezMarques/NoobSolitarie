@@ -7,27 +7,25 @@
 
 #include "Node.h"
 /*
-template <class T> Node<T>::Node() {
+template<class T> Node<T>::Node() {
 	this->element = nullptr;
 	this->nextElement = nullptr;
 	this->previousElement = nullptr;
 }
 
-template <class T> Node<T>::Node(T *element, Node *previousElement, Node *nextElement)
-{
+template<class T> Node<T>::Node(T *element, Node *previousElement,
+		Node *nextElement) {
 	this->element = element;
 	this->nextElement = nextElement;
-	if(nextElement)
-	{
+	if (nextElement) {
 		nextElement->setPreviousElement(this);
 	}
 	this->previousElement = previousElement;
-	if(previousElement)
-	{
+	if (previousElement) {
 		previousElement->setNextElement(this);
 	}
 }
-template <class T> Node<T>::~Node() {
+template<class T> Node<T>::~Node() {
 	// TODO Auto-generated destructor stub
-}
-*/
+}*/
+

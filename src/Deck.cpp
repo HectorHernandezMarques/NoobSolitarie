@@ -9,10 +9,8 @@
 
 Deck::Deck() {
 	// TODO Auto-generated constructor stub
-	for(int i = 0 ; i < SUIT_NUMBER ; i++)
-	{
-		for(int j = 0 ; j < CARDS_PER_SUIT ; j++)
-		{
+	for (int i = 0; i < SUIT_NUMBER; i++) {
+		for (int j = 0; j < CARDS_PER_SUIT; j++) {
 			this->cards[i][j].setSuit(i);
 			this->cards[i][j].setNumber(j);
 		}

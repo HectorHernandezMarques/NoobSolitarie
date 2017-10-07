@@ -7,76 +7,66 @@
 
 #include "Suit.h"
 
-Suit::Suit() : Stack(){
+Suit::Suit() :
+		Stack() {
 
 }
 
-Suit::Suit(Node<Card> *card) : Stack(card){
+Suit::Suit(Node<Card> *card) :
+		Stack(card) {
 }
 
 Suit::~Suit() {
 	// TODO Auto-generated destructor stub
 }
 
-bool Suit::add(Node<Card> *card)
-{
-	if(this->cardsNumber == 0) //Set an ace with the Suit Stack empty
-	{
-		if(card->getElement()->getNumber() == 0)
-		{
+bool Suit::add(Node<Card> *card) {
+	if (this->cardsNumber == 0) //Set an ace with the Suit Stack empty
+			{
+		if (card->getElement()->getNumber() == 0) {
 			return this->Stack::add(card);
-		}
-		else
-		{
+		} else {
 			return false;
 		}
-	}
-	else if(card->getElement()->getSuit() == this->cards->getElement()->getSuit() && this->cards->getElement()->getNumber() == (card->getElement()->getNumber() - 1) && card->getNextElement() == nullptr) //Set an upper card of the same suit && single card
-	{
+	} else if (card->getElement()->getSuit()
+			== this->cards->getElement()->getSuit()
+			&& this->cards->getElement()->getNumber()
+					== (card->getElement()->getNumber() - 1)
+			&& card->getNextElement() == nullptr) //Set an upper card of the same suit && single card
+					{
 		return this->Stack::add(card);
-	}
-	else
-	{
+	} else {
 		return false;
 	}
 }
 
-bool Suit::checkAdd(Node<Card> *card)
-{
-	if(card){
-		if(this->cardsNumber == 0) //Set an ace with the Suit Stack empty
-		{
-			if(card->getElement()->getNumber() == 0)
-			{
+bool Suit::checkAdd(Node<Card> *card) {
+	if (card) {
+		if (this->cardsNumber == 0) //Set an ace with the Suit Stack empty
+				{
+			if (card->getElement()->getNumber() == 0) {
 				return this->Stack::checkAdd(card);
-			}
-			else
-			{
+			} else {
 				return false;
 			}
-		}
-		else if(card->getElement()->getSuit() == this->cards->getElement()->getSuit() && this->cards->getElement()->getNumber() == (card->getElement()->getNumber() - 1)) //Set an upper card of the same suit && single card
-		{
+		} else if (card->getElement()->getSuit()
+				== this->cards->getElement()->getSuit()
+				&& this->cards->getElement()->getNumber()
+						== (card->getElement()->getNumber() - 1)) //Set an upper card of the same suit && single card
+						{
 			return this->Stack::checkAdd(card);
-		}
-		else
-		{
+		} else {
 			return false;
 		}
-	}
-	else
-	{
+	} else {
 		return false;
 	}
 }
 
-Node<Card>* Suit::remove(int index)
-{
-	if(index == 0 && this->cardsNumber)
-	{
+Node<Card>* Suit::remove(int index) {
+	if (index == 0 && this->cardsNumber) {
 		Node<Card> *currentCard = this->cards;
-		if(currentCard->getPreviousElement())
-		{
+		if (currentCard->getPreviousElement()) {
 			currentCard->getPreviousElement()->setNextElement(nullptr);
 		}
 		this->cards = currentCard->getPreviousElement();
@@ -87,10 +77,8 @@ Node<Card>* Suit::remove(int index)
 	return nullptr;
 }
 
-Node<Card>* Suit::checkRemove(int index)
-{
-	if(index == 0 && this->cardsNumber)
-	{
+Node<Card>* Suit::checkRemove(int index) {
+	if (index == 0 && this->cardsNumber) {
 		Node<Card> *currentCard = this->cards;
 
 		return currentCard;
@@ -98,16 +86,12 @@ Node<Card>* Suit::checkRemove(int index)
 	return nullptr;
 }
 
-std::string Suit::print()
-{
+std::string Suit::print() {
 	std::string result;
 
-	if(this->cardsNumber)
-	{
-		result = "|" + this->cards->getElement()->print() +  "|";
-	}
-	else
-	{
+	if (this->cardsNumber) {
+		result = "|" + this->cards->getElement()->print() + "|";
+	} else {
 		result = "|o|";
 	}
 	return result;

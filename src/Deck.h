@@ -14,17 +14,25 @@
 class Deck {
 private:
 	Card cards[SUIT_NUMBER][CARDS_PER_SUIT];
-	bool servedCards[SUIT_NUMBER * CARDS_PER_SUIT] = {false};
+	bool servedCards[SUIT_NUMBER * CARDS_PER_SUIT] = { false };
 
 public:
 	Deck();
 	virtual ~Deck();
 
-	bool getServedCards(int index) { return servedCards[index]; }
-	void setServedCards(int index, bool value) { this->servedCards[index] = value; }
+	bool getServedCards(int index) {
+		return servedCards[index];
+	}
+	void setServedCards(int index, bool value) {
+		this->servedCards[index] = value;
+	}
 
-	Card* getCard(int suit, int number) { return &cards[suit][number]; }
-	Card* getCard(int index) { return &cards[index / CARDS_PER_SUIT][index % CARDS_PER_SUIT]; }
+	Card* getCard(int suit, int number) {
+		return &cards[suit][number];
+	}
+	Card* getCard(int index) {
+		return &cards[index / CARDS_PER_SUIT][index % CARDS_PER_SUIT];
+	}
 };
 
 #endif /* DECK_H_ */

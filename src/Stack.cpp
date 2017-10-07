@@ -18,8 +18,7 @@ Stack::Stack(Node<Card> *card) {
 	int currentCardsNumber = 0;
 	Node<Card> *currentCard = card;
 
-	for( ; currentCard ; currentCardsNumber++)
-	{
+	for (; currentCard; currentCardsNumber++) {
 		currentCard = currentCard->getPreviousElement();
 	}
 
@@ -30,12 +29,10 @@ Stack::~Stack() {
 	// TODO Auto-generated destructor stub
 }
 
-bool Stack::add(Node<Card> *card)
-{
+bool Stack::add(Node<Card> *card) {
 	int newCardsNumber = 1;
 
-	if(this->cardsNumber)
-	{
+	if (this->cardsNumber) {
 		this->cards->setNextElement(card); //linking last card to new card
 	}
 
@@ -44,7 +41,7 @@ bool Stack::add(Node<Card> *card)
 	this->cards = card;
 
 	Node<Card> *currentCard = this->cards;
-	while(currentCard->getNextElement()) //setting last card just in case there are several added cards
+	while (currentCard->getNextElement()) //setting last card just in case there are several added cards
 	{
 		newCardsNumber++;
 		currentCard = currentCard->getNextElement();
@@ -56,37 +53,33 @@ bool Stack::add(Node<Card> *card)
 	return true;
 }
 
-bool Stack::checkAdd(Node<Card> *card)
-{
-	if(card){
+bool Stack::checkAdd(Node<Card> *card) {
+	if (card) {
 		return true;
-	}
-	else
-	{
+	} else {
 		return false;
 	}
 }
 
-Node<Card>* Stack::remove(int index)
-{
-	if(index < this->cardsNumber && index >= 0) //if the card exist
-	{
+Node<Card>* Stack::remove(int index) {
+	if (index < this->cardsNumber && index >= 0) //if the card exist
+			{
 		Node<Card> *currentCard = this->cards;
-		for (int i = 0 ; i < index ; i++) //seeking the card wanted
-		{
+		for (int i = 0; i < index; i++) //seeking the card wanted
+				{
 			currentCard = currentCard->getPreviousElement();
 		}
 
-		if(currentCard->getPreviousElement()) //if it's not the first card
+		if (currentCard->getPreviousElement()) //if it's not the first card
 		{
-			currentCard->getPreviousElement()->setNextElement(currentCard->getNextElement()); //linking previous card with the next
+			currentCard->getPreviousElement()->setNextElement(
+					currentCard->getNextElement()); //linking previous card with the next
 		}
-		if(currentCard->getNextElement()) //if it's not the last card
+		if (currentCard->getNextElement()) //if it's not the last card
 		{
-			currentCard->getNextElement()->setPreviousElement(currentCard->getPreviousElement()); //linking the next card with the previous
-		}
-		else
-		{
+			currentCard->getNextElement()->setPreviousElement(
+					currentCard->getPreviousElement()); //linking the next card with the previous
+		} else {
 			this->cards = currentCard->getPreviousElement(); //setting last card if it's removed
 		}
 
@@ -96,32 +89,26 @@ Node<Card>* Stack::remove(int index)
 		currentCard->setPreviousElement(nullptr);
 
 		return currentCard;
-	}
-	else
-	{
+	} else {
 		return nullptr;
 	}
 }
 
-Node<Card>* Stack::checkRemove(int index)
-{
-	if(index < this->cardsNumber && index >= 0) //if the card exist
-	{
+Node<Card>* Stack::checkRemove(int index) {
+	if (index < this->cardsNumber && index >= 0) //if the card exist
+			{
 		Node<Card> *currentCard = this->cards;
-		for (int i = 0 ; i < index ; i++) //seeking the card wanted
-		{
+		for (int i = 0; i < index; i++) //seeking the card wanted
+				{
 			currentCard = currentCard->getPreviousElement();
 		}
 
 		return currentCard;
-	}
-	else
-	{
+	} else {
 		return nullptr;
 	}
 }
 
-std::string Stack::print()
-{
+std::string Stack::print() {
 	return "";
 }

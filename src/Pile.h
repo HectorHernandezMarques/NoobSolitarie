@@ -27,8 +27,12 @@ public:
 	Node<Card>* checkRemove(int index);
 	std::string print();
 
-	int getHiddenCards() { return this->hiddenCards; }
-	void setHiddenCards(int hiddenCards) { this->hiddenCards = hiddenCards; }
+	int getHiddenCards() {
+		return this->hiddenCards;
+	}
+	void setHiddenCards(int hiddenCards) {
+		this->hiddenCards = hiddenCards;
+	}
 };
 
 #endif /* PILE_H_ */

@@ -52,8 +52,7 @@ char Card::printSuit() {
 }
 
 std::string Card::printNumber() {
-	switch(this->number)
-	{
+	switch (this->number) {
 	case 0:
 		return "A";
 

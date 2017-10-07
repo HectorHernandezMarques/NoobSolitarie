@@ -20,9 +20,16 @@ Suit::~Suit() {
 
 bool Suit::add(Node<Card> *card)
 {
-	if(this->cardsNumber == 0 && card->getElement()->getNumber() == 0) //Set an ace with the Suit Stack empty
+	if(this->cardsNumber == 0) //Set an ace with the Suit Stack empty
 	{
-		return this->Stack::add(card);
+		if(card->getElement()->getNumber() == 0)
+		{
+			return this->Stack::add(card);
+		}
+		else
+		{
+			return false;
+		}
 	}
 	else if(card->getElement()->getSuit() == this->cards->getElement()->getSuit() && this->cards->getElement()->getNumber() == (card->getElement()->getNumber() - 1) && card->getNextElement() == nullptr) //Set an upper card of the same suit && single card
 	{
@@ -37,9 +44,16 @@ bool Suit::add(Node<Card> *card)
 bool Suit::checkAdd(Node<Card> *card)
 {
 	if(card){
-		if(this->cardsNumber == 0 && card->getElement()->getNumber() == 0) //Set an ace with the Suit Stack empty
+		if(this->cardsNumber == 0) //Set an ace with the Suit Stack empty
 		{
-			return this->Stack::checkAdd(card);
+			if(card->getElement()->getNumber() == 0)
+			{
+				return this->Stack::checkAdd(card);
+			}
+			else
+			{
+				return false;
+			}
 		}
 		else if(card->getElement()->getSuit() == this->cards->getElement()->getSuit() && this->cards->getElement()->getNumber() == (card->getElement()->getNumber() - 1)) //Set an upper card of the same suit && single card
 		{

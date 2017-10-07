@@ -69,7 +69,7 @@ bool Stack::checkAdd(Node<Card> *card)
 
 Node<Card>* Stack::remove(int index)
 {
-	if(index < this->cardsNumber) //if the card exist
+	if(index < this->cardsNumber && index >= 0) //if the card exist
 	{
 		Node<Card> *currentCard = this->cards;
 		for (int i = 0 ; i < index ; i++) //seeking the card wanted
@@ -105,7 +105,7 @@ Node<Card>* Stack::remove(int index)
 
 Node<Card>* Stack::checkRemove(int index)
 {
-	if(index < this->cardsNumber) //if the card exist
+	if(index < this->cardsNumber && index >= 0) //if the card exist
 	{
 		Node<Card> *currentCard = this->cards;
 		for (int i = 0 ; i < index ; i++) //seeking the card wanted

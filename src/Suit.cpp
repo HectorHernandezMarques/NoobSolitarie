@@ -17,11 +17,10 @@ Suit::Suit(Node<Card> *card) :
 }
 
 Suit::~Suit() {
-	// TODO Auto-generated destructor stub
 }
 
 bool Suit::add(Node<Card> *card) {
-	if (this->cardsNumber == 0) //Set an ace with the Suit Stack empty
+	if (this->cardsNumber == 0)
 			{
 		if (card->getElement()->getNumber() == 0) {
 			return this->Stack::add(card);
@@ -32,7 +31,7 @@ bool Suit::add(Node<Card> *card) {
 			== this->cards->getElement()->getSuit()
 			&& this->cards->getElement()->getNumber()
 					== (card->getElement()->getNumber() - 1)
-			&& card->getNextElement() == nullptr) //Set an upper card of the same suit && single card
+			&& card->getNextElement() == nullptr)
 					{
 		return this->Stack::add(card);
 	} else {
@@ -42,7 +41,7 @@ bool Suit::add(Node<Card> *card) {
 
 bool Suit::checkAdd(Node<Card> *card) {
 	if (card) {
-		if (this->cardsNumber == 0) //Set an ace with the Suit Stack empty
+		if (this->cardsNumber == 0)
 				{
 			if (card->getElement()->getNumber() == 0) {
 				return this->Stack::checkAdd(card);
@@ -52,7 +51,7 @@ bool Suit::checkAdd(Node<Card> *card) {
 		} else if (card->getElement()->getSuit()
 				== this->cards->getElement()->getSuit()
 				&& this->cards->getElement()->getNumber()
-						== (card->getElement()->getNumber() - 1)) //Set an upper card of the same suit && single card
+						== (card->getElement()->getNumber() - 1))
 						{
 			return this->Stack::checkAdd(card);
 		} else {

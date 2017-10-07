@@ -19,7 +19,6 @@ Pile::Pile(Node<Card> *card) :
 }
 
 Pile::~Pile() {
-	// TODO Auto-generated destructor stub
 }
 
 bool Pile::add(Node<Card> *card) {

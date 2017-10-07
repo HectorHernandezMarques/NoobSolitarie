@@ -29,7 +29,7 @@ Game::Game() :
 			nextCard = rand() % (SUIT_NUMBER * CARDS_PER_SUIT);
 
 			for (; this->deck.getServedCards(nextCard);) {
-				nextCard = (nextCard + 1) % (SUIT_NUMBER * CARDS_PER_SUIT); //seek an unserved card beginning by random nextCard
+				nextCard = (nextCard + 1) % (SUIT_NUMBER * CARDS_PER_SUIT);
 			}
 
 			currentNode = new Node<Card>(this->deck.getCard(nextCard),
@@ -47,7 +47,7 @@ Game::Game() :
 		nextCard = rand() % (SUIT_NUMBER * CARDS_PER_SUIT);
 
 		for (; this->deck.getServedCards(nextCard);) {
-			nextCard = (nextCard + 1) % (SUIT_NUMBER * CARDS_PER_SUIT); //seek an unserved card beginning by random nextCard
+			nextCard = (nextCard + 1) % (SUIT_NUMBER * CARDS_PER_SUIT);
 		}
 
 		currentNode = new Node<Card>(this->deck.getCard(nextCard), currentNode,
@@ -64,13 +64,12 @@ Game::Game() :
 }
 
 Game::~Game() {
-	// TODO Auto-generated destructor stub
 }
 
 void Game::run() {
 	int option[2][3];
 	for (;;) {
-		//system("CLS");
+		system("CLS");
 		std::cout << this->printGame();
 		if (this->firstDecition(option[0])) {
 			switch (option[0][0]) {

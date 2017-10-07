@@ -16,24 +16,9 @@ private:
 	Node *previousElement;
 
 public:
-	Node() {
-		this->element = nullptr;
-		this->nextElement = nullptr;
-		this->previousElement = nullptr;
-	}
-	Node(T* element, Node *previousElement, Node *nextElement) {
-		this->element = element;
-		this->nextElement = nextElement;
-		if (nextElement) {
-			nextElement->setPreviousElement(this);
-		}
-		this->previousElement = previousElement;
-		if (previousElement) {
-			previousElement->setNextElement(this);
-		}
-	}
-	virtual ~Node() {
-	}
+	Node();
+	Node(T* element, Node *previousElement, Node *nextElement);
+	virtual ~Node();
 
 	T* getElement() {
 		return this->element;
@@ -56,5 +41,26 @@ public:
 	}
 
 };
+
+template<class T> Node<T>::Node() {
+	this->element = nullptr;
+	this->nextElement = nullptr;
+	this->previousElement = nullptr;
+}
+
+template<class T> Node<T>::Node(T *element, Node *previousElement,
+		Node *nextElement) {
+	this->element = element;
+	this->nextElement = nextElement;
+	if (nextElement) {
+		nextElement->setPreviousElement(this);
+	}
+	this->previousElement = previousElement;
+	if (previousElement) {
+		previousElement->setNextElement(this);
+	}
+}
+template<class T> Node<T>::~Node() {
+}
 
 #endif /* NODE_H_ */

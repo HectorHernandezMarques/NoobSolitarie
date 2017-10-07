@@ -18,7 +18,7 @@ Card::Card(int suit, int number) {
 }
 
 Card::~Card() {
-	// TODO Auto-generated destructor stub
+
 }
 
 std::string Card::print() {

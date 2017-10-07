@@ -26,22 +26,21 @@ Stack::Stack(Node<Card> *card) {
 }
 
 Stack::~Stack() {
-	// TODO Auto-generated destructor stub
 }
 
 bool Stack::add(Node<Card> *card) {
 	int newCardsNumber = 1;
 
 	if (this->cardsNumber) {
-		this->cards->setNextElement(card); //linking last card to new card
+		this->cards->setNextElement(card);
 	}
 
-	card->setPreviousElement(this->cards); //linking new card(s) to last card
+	card->setPreviousElement(this->cards);
 
 	this->cards = card;
 
 	Node<Card> *currentCard = this->cards;
-	while (currentCard->getNextElement()) //setting last card just in case there are several added cards
+	while (currentCard->getNextElement())
 	{
 		newCardsNumber++;
 		currentCard = currentCard->getNextElement();
@@ -62,30 +61,30 @@ bool Stack::checkAdd(Node<Card> *card) {
 }
 
 Node<Card>* Stack::remove(int index) {
-	if (index < this->cardsNumber && index >= 0) //if the card exist
+	if (index < this->cardsNumber && index >= 0)
 			{
 		Node<Card> *currentCard = this->cards;
-		for (int i = 0; i < index; i++) //seeking the card wanted
+		for (int i = 0; i < index; i++)
 				{
 			currentCard = currentCard->getPreviousElement();
 		}
 
-		if (currentCard->getPreviousElement()) //if it's not the first card
+		if (currentCard->getPreviousElement())
 		{
 			currentCard->getPreviousElement()->setNextElement(
-					currentCard->getNextElement()); //linking previous card with the next
+					currentCard->getNextElement());
 		}
-		if (currentCard->getNextElement()) //if it's not the last card
+		if (currentCard->getNextElement())
 		{
 			currentCard->getNextElement()->setPreviousElement(
-					currentCard->getPreviousElement()); //linking the next card with the previous
+					currentCard->getPreviousElement());
 		} else {
-			this->cards = currentCard->getPreviousElement(); //setting last card if it's removed
+			this->cards = currentCard->getPreviousElement();
 		}
 
 		this->cardsNumber--;
 
-		currentCard->setNextElement(nullptr); //cleaning removed card links
+		currentCard->setNextElement(nullptr);
 		currentCard->setPreviousElement(nullptr);
 
 		return currentCard;
@@ -95,10 +94,10 @@ Node<Card>* Stack::remove(int index) {
 }
 
 Node<Card>* Stack::checkRemove(int index) {
-	if (index < this->cardsNumber && index >= 0) //if the card exist
+	if (index < this->cardsNumber && index >= 0)
 			{
 		Node<Card> *currentCard = this->cards;
-		for (int i = 0; i < index; i++) //seeking the card wanted
+		for (int i = 0; i < index; i++)
 				{
 			currentCard = currentCard->getPreviousElement();
 		}

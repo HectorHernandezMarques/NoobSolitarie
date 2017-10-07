@@ -8,7 +8,6 @@
 #include "Deck.h"
 
 Deck::Deck() {
-	// TODO Auto-generated constructor stub
 	for (int i = 0; i < SUIT_NUMBER; i++) {
 		for (int j = 0; j < CARDS_PER_SUIT; j++) {
 			this->cards[i][j].setSuit(i);
@@ -18,6 +17,5 @@ Deck::Deck() {
 }
 
 Deck::~Deck() {
-	// TODO Auto-generated destructor stub
 }
 

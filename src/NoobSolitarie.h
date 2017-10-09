@@ -5,8 +5,8 @@
  *      Author: AntonioMontana
  */
 
-#ifndef GAME_H_
-#define GAME_H_
+#ifndef NOOBSOLITARIE_H_
+#define NOOBSOLITARIE_H_
 
 #include "Stack.h"
 #include "Definitions.h"
@@ -30,4 +30,4 @@ public:
 	std::string printGame();
 };
 
-#endif /* GAME_H_ */
+#endif /* NOOBSOLITARIE_H_ */

@@ -9,7 +9,7 @@
 #include <iostream>
 using namespace std;
 
-#include "Game.h"
+#include "NoobSolitarie.h"
 
 int main() {
 	Game game;

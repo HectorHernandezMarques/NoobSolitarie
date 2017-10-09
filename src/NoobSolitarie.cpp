@@ -5,11 +5,12 @@
  *      Author: AntonioMontana
  */
 
+#include "NoobSolitarie.h"
+
 #include <stdlib.h>
 #include <time.h>
 #include <iostream>
 
-#include "Game.h"
 #include "Pile.h"
 #include "Suit.h"
 #include "RemainderDeck.h"
@@ -74,13 +75,13 @@ void Game::run() {
 		if (this->firstDecition(option[0])) {
 			switch (option[0][0]) {
 			case 0:
-				if (this->suit[option[0][1]]->checkRemove(0)) {
+				if (this->suit[option[0][1]]->canRemove(0)) {
 					this->secondDecition(option[1]);
 
 					switch (option[1][0]) {
 					case 0:
-						if (this->suit[option[1][1]]->checkAdd(
-								this->suit[option[0][1]]->checkRemove(0))) {
+						if (this->suit[option[1][1]]->canAdd(
+								this->suit[option[0][1]]->canRemove(0))) {
 							this->suit[option[1][1]]->add(
 									this->suit[option[0][1]]->remove(0));
 						} else {
@@ -88,8 +89,8 @@ void Game::run() {
 						}
 						break;
 					case 1:
-						if (this->pile[option[1][1]]->checkAdd(
-								this->suit[option[0][1]]->checkRemove(0))) {
+						if (this->pile[option[1][1]]->canAdd(
+								this->suit[option[0][1]]->canRemove(0))) {
 							this->pile[option[1][1]]->add(
 									this->suit[option[0][1]]->remove(0));
 						} else {
@@ -102,13 +103,13 @@ void Game::run() {
 				}
 				break;
 			case 1:
-				if (this->pile[option[0][1]]->checkRemove(option[0][2])) {
+				if (this->pile[option[0][1]]->canRemove(option[0][2])) {
 					this->secondDecition(option[1]);
 
 					switch (option[1][0]) {
 					case 0:
-						if (this->suit[option[1][1]]->checkAdd(
-								this->pile[option[0][1]]->checkRemove(
+						if (this->suit[option[1][1]]->canAdd(
+								this->pile[option[0][1]]->canRemove(
 										option[0][2]))) {
 							this->suit[option[1][1]]->add(
 									this->pile[option[0][1]]->remove(
@@ -118,8 +119,8 @@ void Game::run() {
 						}
 						break;
 					case 1:
-						if (this->pile[option[1][1]]->checkAdd(
-								this->pile[option[0][1]]->checkRemove(
+						if (this->pile[option[1][1]]->canAdd(
+								this->pile[option[0][1]]->canRemove(
 										option[0][2]))) {
 							this->pile[option[1][1]]->add(
 									this->pile[option[0][1]]->remove(
@@ -134,13 +135,13 @@ void Game::run() {
 				}
 				break;
 			case 2:
-				if (this->remainderDeck->checkRemove(0)) {
+				if (this->remainderDeck->canRemove(0)) {
 					this->secondDecition(option[1]);
 
 					switch (option[1][0]) {
 					case 0:
-						if (this->suit[option[1][1]]->checkAdd(
-								this->remainderDeck->checkRemove(0))) {
+						if (this->suit[option[1][1]]->canAdd(
+								this->remainderDeck->canRemove(0))) {
 							this->suit[option[1][1]]->add(
 									this->remainderDeck->remove(0));
 						} else {
@@ -148,8 +149,8 @@ void Game::run() {
 						}
 						break;
 					case 1:
-						if (this->pile[option[1][1]]->checkAdd(
-								this->remainderDeck->checkRemove(0))) {
+						if (this->pile[option[1][1]]->canAdd(
+								this->remainderDeck->canRemove(0))) {
 							this->pile[option[1][1]]->add(
 									this->remainderDeck->remove(0));
 						} else {
@@ -193,13 +194,13 @@ bool Game::firstDecition(int *option) {
 		do {
 			std::cout << "Enter the card you want to access [0 .. "
 					<< (this->pile[option[1]]->getCardsNumber()
-							- ((Pile*) this->pile[option[1]])->getHiddenCards())
+							- ((Pile*) this->pile[option[1]])->getHiddenCardsNumber())
 							- 1 << "]";
 			std::cin >> option[2];
 		} while (option[2] < 0
 				|| option[2]
 						>= (this->pile[option[1]]->getCardsNumber()
-								- ((Pile*) this->pile[option[1]])->getHiddenCards()));
+								- ((Pile*) this->pile[option[1]])->getHiddenCardsNumber()));
 
 		break;
 	case 2:

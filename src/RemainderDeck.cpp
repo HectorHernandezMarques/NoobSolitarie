@@ -12,14 +12,14 @@
 
 RemainderDeck::RemainderDeck() :
 		Stack() {
-	this->hiddenCards = 0;
-	this->visibleCards = 0;
+	this->hiddenCardsNumber = 0;
+	this->visibleCardsNumber = 0;
 }
 
 RemainderDeck::RemainderDeck(Node<Card> *card) :
 		Stack(card) {
-	this->hiddenCards = this->cardsNumber;
-	this->visibleCards = 0;
+	this->hiddenCardsNumber = this->cardsNumber;
+	this->visibleCardsNumber = 0;
 }
 
 RemainderDeck::~RemainderDeck() {
@@ -28,15 +28,15 @@ RemainderDeck::~RemainderDeck() {
 
 bool RemainderDeck::add(Node<Card> *card) {
 	if (this->cardsNumber) {
-		if (this->hiddenCards) {
-			this->visibleCards =
-					(this->hiddenCards > GAME_MODE) ?
-							GAME_MODE : this->hiddenCards;
-			this->hiddenCards =
-					(this->hiddenCards > GAME_MODE) ? this->hiddenCards - 3 : 0;
+		if (this->hiddenCardsNumber) {
+			this->visibleCardsNumber =
+					(this->hiddenCardsNumber > GAME_MODE) ?
+							GAME_MODE : this->hiddenCardsNumber;
+			this->hiddenCardsNumber =
+					(this->hiddenCardsNumber > GAME_MODE) ? this->hiddenCardsNumber - 3 : 0;
 		} else {
-			this->visibleCards = 0;
-			this->hiddenCards = this->cardsNumber;
+			this->visibleCardsNumber = 0;
+			this->hiddenCardsNumber = this->cardsNumber;
 		}
 	} else {
 		return false;
@@ -44,7 +44,7 @@ bool RemainderDeck::add(Node<Card> *card) {
 	return true;
 }
 
-bool RemainderDeck::checkAdd(Node<Card> *card) {
+bool RemainderDeck::canAdd(Node<Card> *card) {
 	if (this->cardsNumber) {
 		return true;
 	} else {
@@ -54,17 +54,17 @@ bool RemainderDeck::checkAdd(Node<Card> *card) {
 
 Node<Card>* RemainderDeck::remove(int index) {
 	if (index == 0 && this->cardsNumber) {
-		this->visibleCards =
-				(this->visibleCards == 1) ? 1 : this->visibleCards - 1;
-		return Stack::remove(this->cardsNumber - this->hiddenCards - 1);
+		this->visibleCardsNumber =
+				(this->visibleCardsNumber == 1) ? 1 : this->visibleCardsNumber - 1;
+		return Stack::remove(this->cardsNumber - this->hiddenCardsNumber - 1);
 	} else {
 		return nullptr;
 	}
 }
 
-Node<Card>* RemainderDeck::checkRemove(int index) {
+Node<Card>* RemainderDeck::canRemove(int index) {
 	if (index == 0 && this->cardsNumber) {
-		return Stack::checkRemove(this->cardsNumber - this->hiddenCards - 1);
+		return Stack::canRemove(this->cardsNumber - this->hiddenCardsNumber - 1);
 	} else {
 		return nullptr;
 	}
@@ -74,7 +74,7 @@ std::string RemainderDeck::print() {
 	std::string result;
 
 	if (this->cardsNumber) {
-		if (this->hiddenCards) {
+		if (this->hiddenCardsNumber) {
 			result = "|X|  ";
 		} else {
 			result = "|o|  ";
@@ -83,17 +83,17 @@ std::string RemainderDeck::print() {
 		Node<Card> *currentNode = this->cards;
 
 		for (int i = 0;
-				i < this->cardsNumber - this->hiddenCards - this->visibleCards;
+				i < this->cardsNumber - this->hiddenCardsNumber - this->visibleCardsNumber;
 				i++) {
 			currentNode = currentNode->getPreviousElement();
 		}
 
-		for (int i = 0; i < this->visibleCards; i++) {
+		for (int i = 0; i < this->visibleCardsNumber; i++) {
 			result += "|" + currentNode->getElement()->print() + "|  ";
 			currentNode = currentNode->getPreviousElement();
 		}
 
-		for (int i = 0; i < (GAME_MODE - this->visibleCards); i++) {
+		for (int i = 0; i < (GAME_MODE - this->visibleCardsNumber); i++) {
 			result += "|o|  ";
 		}
 	} else {

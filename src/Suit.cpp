@@ -39,12 +39,12 @@ bool Suit::add(Node<Card> *card) {
 	}
 }
 
-bool Suit::checkAdd(Node<Card> *card) {
+bool Suit::canAdd(Node<Card> *card) {
 	if (card) {
 		if (this->cardsNumber == 0)
 				{
 			if (card->getElement()->getNumber() == 0) {
-				return this->Stack::checkAdd(card);
+				return this->Stack::canAdd(card);
 			} else {
 				return false;
 			}
@@ -53,7 +53,7 @@ bool Suit::checkAdd(Node<Card> *card) {
 				&& this->cards->getElement()->getNumber()
 						== (card->getElement()->getNumber() - 1))
 						{
-			return this->Stack::checkAdd(card);
+			return this->Stack::canAdd(card);
 		} else {
 			return false;
 		}
@@ -76,7 +76,7 @@ Node<Card>* Suit::remove(int index) {
 	return nullptr;
 }
 
-Node<Card>* Suit::checkRemove(int index) {
+Node<Card>* Suit::canRemove(int index) {
 	if (index == 0 && this->cardsNumber) {
 		Node<Card> *currentCard = this->cards;
 

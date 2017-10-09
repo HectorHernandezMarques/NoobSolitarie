@@ -52,7 +52,7 @@ bool Stack::add(Node<Card> *card) {
 	return true;
 }
 
-bool Stack::checkAdd(Node<Card> *card) {
+bool Stack::canAdd(Node<Card> *card) {
 	if (card) {
 		return true;
 	} else {
@@ -93,7 +93,7 @@ Node<Card>* Stack::remove(int index) {
 	}
 }
 
-Node<Card>* Stack::checkRemove(int index) {
+Node<Card>* Stack::canRemove(int index) {
 	if (index < this->cardsNumber && index >= 0)
 			{
 		Node<Card> *currentCard = this->cards;

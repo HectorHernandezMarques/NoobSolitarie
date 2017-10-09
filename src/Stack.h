@@ -25,9 +25,9 @@ public:
 	virtual ~Stack();
 
 	virtual bool add(Node<Card> *card);
-	virtual bool checkAdd(Node<Card> *card);
+	virtual bool canAdd(Node<Card> *card);
 	virtual Node<Card>* remove(int index);
-	virtual Node<Card>* checkRemove(int index);
+	virtual Node<Card>* canRemove(int index);
 	virtual std::string print();
 
 	int getCardsNumber() {

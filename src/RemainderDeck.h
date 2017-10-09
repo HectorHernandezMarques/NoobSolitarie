@@ -12,8 +12,8 @@
 
 class RemainderDeck: public Stack {
 private:
-	int hiddenCards;
-	int visibleCards;
+	int hiddenCardsNumber;
+	int visibleCardsNumber;
 
 public:
 	RemainderDeck();
@@ -21,9 +21,9 @@ public:
 	virtual ~RemainderDeck();
 
 	bool add(Node<Card> *card);
-	bool checkAdd(Node<Card> *card);
+	bool canAdd(Node<Card> *card);
 	Node<Card>* remove(int index);
-	Node<Card>* checkRemove(int index);
+	Node<Card>* canRemove(int index);
 	std::string print();
 };
 

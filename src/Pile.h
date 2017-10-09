@@ -14,7 +14,7 @@
 
 class Pile: public Stack {
 private:
-	int hiddenCards;
+	int hiddenCardsNumber;
 
 public:
 	Pile();
@@ -22,16 +22,16 @@ public:
 	virtual ~Pile();
 
 	bool add(Node<Card> *card);
-	bool checkAdd(Node<Card> *card);
+	bool canAdd(Node<Card> *card);
 	Node<Card>* remove(int index);
-	Node<Card>* checkRemove(int index);
+	Node<Card>* canRemove(int index);
 	std::string print();
 
-	int getHiddenCards() {
-		return this->hiddenCards;
+	int getHiddenCardsNumber() {
+		return this->hiddenCardsNumber;
 	}
-	void setHiddenCards(int hiddenCards) {
-		this->hiddenCards = hiddenCards;
+	void setHiddenCardsNumber(int hiddenCards) {
+		this->hiddenCardsNumber = hiddenCards;
 	}
 };
 

@@ -10,12 +10,12 @@
 
 Pile::Pile() :
 		Stack() {
-	this->hiddenCards = 0;
+	this->hiddenCardsNumber = 0;
 }
 
 Pile::Pile(Node<Card> *card) :
 		Stack(card) {
-	this->hiddenCards = this->cardsNumber - 1;
+	this->hiddenCardsNumber = this->cardsNumber - 1;
 }
 
 Pile::~Pile() {
@@ -40,12 +40,12 @@ bool Pile::add(Node<Card> *card) {
 	}
 }
 
-bool Pile::checkAdd(Node<Card> *card) {
+bool Pile::canAdd(Node<Card> *card) {
 	if (card) {
 		if (this->cardsNumber == 0) {
 			if (card->getElement()->getNumber() == (CARDS_PER_SUIT - 1)) //Set a King in a Pile Stack Empty
 					{
-				return Stack::checkAdd(card);
+				return Stack::canAdd(card);
 			} else {
 				return false;
 			}
@@ -54,7 +54,7 @@ bool Pile::checkAdd(Node<Card> *card) {
 				&& this->cards->getElement()->getNumber()
 						== (card->getElement()->getNumber() + 1)) //Set a lower alternative color card
 						{
-			return Stack::checkAdd(card);
+			return Stack::canAdd(card);
 		} else {
 			return false;
 		}
@@ -64,7 +64,7 @@ bool Pile::checkAdd(Node<Card> *card) {
 }
 
 Node<Card>* Pile::remove(int index) {
-	if (index < (this->cardsNumber - this->hiddenCards)) //if the card exist
+	if (index < (this->cardsNumber - this->hiddenCardsNumber)) //if the card exist
 			{
 		int removedCardsNumber = 1;
 		Node<Card> *currentCard = this->cards;
@@ -85,9 +85,9 @@ Node<Card>* Pile::remove(int index) {
 
 		this->cardsNumber -= removedCardsNumber;
 
-		this->hiddenCards =
-				(this->cardsNumber == this->hiddenCards && this->hiddenCards > 0) ?
-						this->hiddenCards - 1 : this->hiddenCards;
+		this->hiddenCardsNumber =
+				(this->cardsNumber == this->hiddenCardsNumber && this->hiddenCardsNumber > 0) ?
+						this->hiddenCardsNumber - 1 : this->hiddenCardsNumber;
 
 		return currentCard;
 	} else {
@@ -95,8 +95,8 @@ Node<Card>* Pile::remove(int index) {
 	}
 }
 
-Node<Card>* Pile::checkRemove(int index) {
-	if (index < (this->cardsNumber - this->hiddenCards)) //if the card exist
+Node<Card>* Pile::canRemove(int index) {
+	if (index < (this->cardsNumber - this->hiddenCardsNumber)) //if the card exist
 			{
 		Node<Card> *currentCard = this->cards;
 		for (int i = 0; i < index; i++) //seeking the card wanted

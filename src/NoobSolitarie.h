@@ -8,11 +8,12 @@
 #ifndef NOOBSOLITARIE_H_
 #define NOOBSOLITARIE_H_
 
+#include "IO.h"
 #include "Stack.h"
 #include "Definitions.h"
 #include "Deck.h"
 
-class Game {
+class NoobSolitarie {
 private:
 	Deck deck;
 
@@ -20,14 +21,16 @@ private:
 	Stack *suit[SUIT_NUMBER];
 	Stack *remainderDeck;
 
+	IO IO;
+
 public:
-	Game();
-	virtual ~Game();
+	NoobSolitarie();
+	virtual ~NoobSolitarie();
 
 	void run();
 	bool firstDecition(int *option);
 	void secondDecition(int *option);
-	std::string printGame();
+	std::string toString();
 };
 
 #endif /* NOOBSOLITARIE_H_ */

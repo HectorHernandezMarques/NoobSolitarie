@@ -15,8 +15,8 @@
 #include "Suit.h"
 #include "RemainderDeck.h"
 
-Game::Game() :
-		deck() {
+NoobSolitarie::NoobSolitarie() :
+		deck(), IO() {
 
 	srand(time(nullptr));
 	int nextCard;
@@ -64,14 +64,14 @@ Game::Game() :
 
 }
 
-Game::~Game() {
+NoobSolitarie::~NoobSolitarie() {
 }
 
-void Game::run() {
+void NoobSolitarie::run() {
 	int option[2][3];
 	for (;;) {
 		system("CLS");
-		std::cout << this->printGame();
+		this->IO.writeln(this->toString());
 		if (this->firstDecition(option[0])) {
 			switch (option[0][0]) {
 			case 0:
@@ -85,7 +85,7 @@ void Game::run() {
 							this->suit[option[1][1]]->add(
 									this->suit[option[0][1]]->remove(0));
 						} else {
-							std::cout << "Invalid destiny";
+							this->IO.writeln("Invalid destiny");
 						}
 						break;
 					case 1:
@@ -94,12 +94,12 @@ void Game::run() {
 							this->pile[option[1][1]]->add(
 									this->suit[option[0][1]]->remove(0));
 						} else {
-							std::cout << "Invalid destiny";
+							this->IO.writeln("Invalid destiny");
 						}
 						break;
 					}
 				} else {
-					std::cout << "Invalid card";
+					this->IO.writeln("Invalid card");
 				}
 				break;
 			case 1:
@@ -115,7 +115,7 @@ void Game::run() {
 									this->pile[option[0][1]]->remove(
 											option[0][2]));
 						} else {
-							std::cout << "Invalid destiny";
+							this->IO.writeln("Invalid destiny");
 						}
 						break;
 					case 1:
@@ -126,12 +126,12 @@ void Game::run() {
 									this->pile[option[0][1]]->remove(
 											option[0][2]));
 						} else {
-							std::cout << "Invalid destiny";
+							this->IO.writeln("Invalid destiny");
 						}
 						break;
 					}
 				} else {
-					std::cout << "Invalid card";
+					this->IO.writeln("Invalid card");
 				}
 				break;
 			case 2:
@@ -145,7 +145,7 @@ void Game::run() {
 							this->suit[option[1][1]]->add(
 									this->remainderDeck->remove(0));
 						} else {
-							std::cout << "Invalid destiny";
+							this->IO.writeln("Invalid destiny");
 						}
 						break;
 					case 1:
@@ -154,12 +154,12 @@ void Game::run() {
 							this->pile[option[1][1]]->add(
 									this->remainderDeck->remove(0));
 						} else {
-							std::cout << "Invalid destiny";
+							this->IO.writeln("Invalid destiny");
 						}
 						break;
 					}
 				} else {
-					std::cout << "Invalid card";
+					this->IO.writeln("Invalid card");
 				}
 				break;
 			}
@@ -170,33 +170,33 @@ void Game::run() {
 	}
 }
 
-bool Game::firstDecition(int *option) {
+bool NoobSolitarie::firstDecition(int *option) {
 	do {
-		std::cout
-				<< "Enter the section you want to access [0=Suits(top), 1=Piles(middle), 2=Deck(bottom)]";
-		std::cin >> option[0];
+		option[0] =
+				this->IO.readInt(
+						"Enter the section you want to access [0=Suits(top), 1=Piles(middle), 2=Deck(bottom)]");
 	} while (option[0] != 0 && option[0] != 1 && option[0] != 2);
 	switch (option[0]) {
 	case 0:
 		do {
-			std::cout << "Enter the Suit you want to access [0 .. "
-					<< SUIT_NUMBER - 1 << "]";
-			std::cin >> option[1];
+			option[1] = this->IO.readInt(
+					"Enter the Suit you want to access [0 .. "
+							+ std::to_string(SUIT_NUMBER - 1) + "]");
 		} while (option[1] < 0 || option[1] >= SUIT_NUMBER);
 		break;
 	case 1:
 		do {
-			std::cout << "Enter the Pile you want to access [0 .. "
-					<< PILES_NUMBER - 1 << "]";
-			std::cin >> option[1];
+			option[1] = this->IO.readInt(
+					"Enter the Pile you want to access [0 .. "
+							+ std::to_string(PILES_NUMBER - 1) + "]");
 		} while (option[1] < 0 || option[1] >= PILES_NUMBER);
 
 		do {
-			std::cout << "Enter the card you want to access [0 .. "
-					<< (this->pile[option[1]]->getCardsNumber()
-							- ((Pile*) this->pile[option[1]])->getHiddenCardsNumber())
-							- 1 << "]";
-			std::cin >> option[2];
+			option[2] = this->IO.readInt("Enter the card you want to access [0 .. "
+							+ std::to_string(
+									(this->pile[option[1]]->getCardsNumber()
+											- ((Pile*) this->pile[option[1]])->getHiddenCardsNumber())
+											- 1) + "]");
 		} while (option[2] < 0
 				|| option[2]
 						>= (this->pile[option[1]]->getCardsNumber()
@@ -205,43 +205,35 @@ bool Game::firstDecition(int *option) {
 		break;
 	case 2:
 		do {
-			std::cout
-					<< "Enter the Option you want to choose [0=New card(s), 1=Take Card]";
-			std::cin >> option[1];
+			option[1] = this->IO.readInt("Enter the Option you want to choose [0=New card(s), 1=Take Card]");
 		} while (option[1] != 0 && option[1] != 1);
 		break;
 	}
 	return !(option[0] == 2 && option[1] == 0);
 }
 
-void Game::secondDecition(int *option) {
+void NoobSolitarie::secondDecition(int *option) {
 	do {
-		std::cout
-				<< "Enter the section you want to insert your card(s) [0=Suits(top), 1=Piles(middle)]";
-		std::cin >> option[0];
+		option[0] = this->IO.readInt("Enter the section you want to insert your card(s) [0=Suits(top), 1=Piles(middle)]");
 	} while (option[0] != 0 && option[0] != 1);
 	switch (option[0]) {
 	case 0:
 		do {
-			std::cout
-					<< "Enter the Suit where you want to insert your card(s) [0 .. "
-					<< SUIT_NUMBER - 1 << "]";
-			std::cin >> option[1];
+			option[1] = this->IO.readInt("Enter the Suit where you want to insert your card(s) [0 .. "
+							+ std::to_string(SUIT_NUMBER - 1) + "]");
 		} while (option[1] < 0 || option[1] >= SUIT_NUMBER);
 		break;
 	case 1:
 		do {
-			std::cout
-					<< "Enter the Pile where you want to insert your card(s) [0 .. "
-					<< PILES_NUMBER - 1 << "]";
-			std::cin >> option[1];
+			option[1] = this->IO.readInt("Enter the Pile where you want to insert your card(s) [0 .. "
+							+ std::to_string(PILES_NUMBER - 1) + "]");
 		} while (option[1] < 0 || option[1] >= PILES_NUMBER);
 
 		break;
 	}
 }
 
-std::string Game::printGame() {
+std::string NoobSolitarie::toString() {
 	std::string result = "\n";
 
 	for (int i = 0; i < SUIT_NUMBER; i++) {
@@ -252,7 +244,7 @@ std::string Game::printGame() {
 
 	for (int i = 0; i < PILES_NUMBER; i++) {
 		result += std::to_string(i) + " - " /*+ std::to_string(this->pile[i]->getCardsNumber()) + " - "*/
-				+ this->pile[i]->print() + "\n";
+		+ this->pile[i]->print() + "\n";
 	}
 
 	result += "\n\n";

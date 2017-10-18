@@ -12,7 +12,7 @@ using namespace std;
 #include "NoobSolitarie.h"
 
 int main() {
-	Game game;
+	NoobSolitarie game;
 	game.run();
 
 	std::getchar();

@@ -1,5 +1,5 @@
 /*
- * Node.h
+ * Node.tpp
  *
  *  Created on: Oct 2, 2017
  *      Author: AntonioMontana
@@ -7,6 +7,8 @@
 
 #ifndef NODE_H_
 #define NODE_H_
+
+namespace Utils{
 
 template<class T>
 class Node {
@@ -19,6 +21,9 @@ public:
 	Node();
 	Node(T* element, Node *previousElement, Node *nextElement);
 	virtual ~Node();
+
+	void cleanNextElement();
+	void cleanPreviousElement();
 
 	T* getElement() {
 		return this->element;
@@ -48,19 +53,23 @@ template<class T> Node<T>::Node() {
 	this->previousElement = nullptr;
 }
 
-template<class T> Node<T>::Node(T *element, Node *previousElement,
-		Node *nextElement) {
+template<class T> Node<T>::Node(T *element, Node *previousElement, Node *nextElement) {
 	this->element = element;
 	this->nextElement = nextElement;
-	if (nextElement) {
-		nextElement->setPreviousElement(this);
-	}
 	this->previousElement = previousElement;
-	if (previousElement) {
-		previousElement->setNextElement(this);
-	}
 }
+
 template<class T> Node<T>::~Node() {
 }
+
+template<class T> void Node<T>::cleanNextElement() {
+	this->nextElement = nullptr;
+}
+
+template<class T> void Node<T>::cleanPreviousElement() {
+	this->previousElement = nullptr;
+}
+
+} /* namespace Utils */
 
 #endif /* NODE_H_ */

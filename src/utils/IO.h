@@ -12,6 +12,8 @@
 #include <iostream>
 #include <climits>
 
+namespace Utils {
+
 class IO {
 public:
 	IO();
@@ -23,5 +25,7 @@ public:
 	void write(std::string text);
 	void writeln(std::string text);
 };
+
+} /* namespace Utils */
 
 #endif /* IO_H_ */

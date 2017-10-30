@@ -8,28 +8,23 @@
 #ifndef NOOBSOLITARIE_H_
 #define NOOBSOLITARIE_H_
 
-#include "IO.h"
-#include "Stack.h"
+#include <iostream>
+#include "Utils/IO.h"
+#include "Board.h"
+#include "Controller.h"
 #include "Definitions.h"
-#include "Deck.h"
 
 class NoobSolitarie {
 private:
-	Deck deck;
-
-	Stack *pile[7];
-	Stack *suit[SUIT_NUMBER];
-	Stack *remainderDeck;
-
-	IO IO;
+	Utils::IO IO;
+	Board board;
+	Controller controller;
 
 public:
 	NoobSolitarie();
 	virtual ~NoobSolitarie();
 
 	void run();
-	bool firstDecition(int *option);
-	void secondDecition(int *option);
 	std::string toString();
 };
 

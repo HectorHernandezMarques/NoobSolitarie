@@ -1,40 +1,35 @@
 /*
  * Stack.h
  *
- *  Created on: Oct 1, 2017
- *      Author: AntonioMontana
+ *  Created on: Oct 23, 2017
+ *      Author: eherhes
  */
 
 #ifndef STACK_H_
 #define STACK_H_
 
-#include "Node.h"
-#include "Card.h"
-#include <string>
+#include "Utils/Stack.tpp"
+#include "Cards/Card.h"
 
 class Stack {
-private:
-
 protected:
-	Node<Card> *cards;
-	int cardsNumber = 0;
+	Utils::Stack<Cards::Card> stack;
+	virtual Utils::Node<Cards::Card>* remove(int index) = 0;
 
 public:
 	Stack();
-	Stack(Node<Card> *card);
+	Stack(Utils::Node<Cards::Card> *card);
 	virtual ~Stack();
 
-	virtual bool add(Node<Card> *card);
-	virtual bool canAdd(Node<Card> *card);
-	virtual Node<Card>* remove(int index);
-	virtual Node<Card>* canRemove(int index);
-	virtual std::string print();
+	void add(Utils::Node<Cards::Card> *card);
+	virtual bool canRemove(Cards::Card *card) = 0;
+	Utils::Node<Cards::Card>* remove(Cards::Card *card);
+	virtual std::string toString() = 0;
 
+	virtual Cards::Card* getCard(int index);
+	virtual Cards::Card* getLastCard();
 	int getCardsNumber() {
-		return this->cardsNumber;
-	}
-	void setCardsNumber(int cardsNumber) {
-		this->cardsNumber = cardsNumber;
+		return this->stack.getItemsNumber();
 	}
 };
 

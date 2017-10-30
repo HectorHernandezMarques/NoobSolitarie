@@ -7,6 +7,8 @@
 
 #include "IO.h"
 
+namespace Utils {
+
 IO::IO() {
 
 }
@@ -22,7 +24,7 @@ int IO::readInt(std::string title) {
 	while (!(std::cin >> input)) {
 		std::cin.clear();
 		std::cin.ignore(INT_MAX, '\n');
-		std::cout<<"Se esperaba un entero";
+		std::cout << "Se esperaba un entero";
 	}
 	return input;
 }
@@ -34,15 +36,17 @@ std::string IO::readString(std::string title) {
 	while (!(std::cin >> input)) {
 		std::cin.clear();
 		std::cin.ignore(INT_MAX, '\n');
-		std::cout<<"Se esperaba un string";
+		std::cout << "Se esperaba un string";
 	}
 	return input;
 }
 
 void IO::write(std::string text) {
-	std::cout<<text;
+	std::cout << text;
 }
 
 void IO::writeln(std::string text) {
-	std::cout<<text<<"\n";
+	std::cout << text << "\n";
 }
+
+} /* namespace Utils */

@@ -1,12 +1,5 @@
-/*
- * Node.tpp
- *
- *  Created on: Oct 2, 2017
- *      Author: AntonioMontana
- */
-
-#ifndef NODE_H_
-#define NODE_H_
+#ifndef UTILS_NODE_H_
+#define UTILS_NODE_H_
 
 namespace Utils{
 
@@ -28,20 +21,20 @@ public:
 	T* getElement() {
 		return this->element;
 	}
-	Node* getNextElement() {
+	Node<T>* getNextElement() {
 		return this->nextElement;
 	}
-	Node* getPreviousElement() {
+	Node<T>* getPreviousElement() {
 		return this->previousElement;
 	}
 
-	void setElement(T* element) {
+	void setElement(T *element) {
 		this->element = element;
 	}
-	void setNextElement(Node *nextElement) {
+	void setNextElement(Node<T> *nextElement) {
 		this->nextElement = nextElement;
 	}
-	void setPreviousElement(Node *previousElement) {
+	void setPreviousElement(Node<T> *previousElement) {
 		this->previousElement = previousElement;
 	}
 
@@ -72,4 +65,4 @@ template<class T> void Node<T>::cleanPreviousElement() {
 
 } /* namespace Utils */
 
-#endif /* NODE_H_ */
+#endif /* UTILS_NODE_H_ */

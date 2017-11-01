@@ -5,8 +5,8 @@
  *      Author: AntonioMontana
  */
 
-#ifndef IO_H_
-#define IO_H_
+#ifndef UTILS_IO_H_
+#define UTILS_IO_H_
 
 #include <string>
 #include <iostream>
@@ -28,4 +28,4 @@ public:
 
 } /* namespace Utils */
 
-#endif /* IO_H_ */
+#endif /* UTILS_IO_H_ */

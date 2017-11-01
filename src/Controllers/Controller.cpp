@@ -7,8 +7,10 @@
 
 #include "Controller.h"
 
-Controller::Controller(Board *board) {
-	this->board = board;
+namespace Controllers {
+
+Controller::Controller(Models::Board &board) {
+	this->board = &board;
 }
 
 Controller::~Controller() {
@@ -17,29 +19,28 @@ Controller::~Controller() {
 
 void Controller::printBoard() {
 	system("CLS");
-	this->IO.writeln(this->board->toString());
 }
 
 void Controller::flipCard() {
-	if (this->board->getStock()->canFlip()) {
-		this->board->getStock()->flip();
+	if (this->board->getStock().canFlip()) {
+		this->board->getStock().flip();
 	} else {
 		this->IO.writeln("Can flip the stock");
 	}
 }
 
 void Controller::moveCard() {
-	Cards::Card *sourceCard;
-	Stack *sourceStack;
+	Models::Cards::Card *sourceCard;
+	Models::Stack *sourceStack;
 	if (this->selectStackToTake(sourceStack, sourceCard)) {
-		StackAddable *targetStack;
+		Models::StackAddable *targetStack;
 		if (this->selectStackToPut(targetStack, sourceCard)) {
-			targetStack->add(sourceStack->remove(sourceCard));
+			targetStack->add(sourceStack->remove(*sourceCard));
 		}
 	}
 }
 
-bool Controller::selectStackToTake(Stack *&sourceStack, Cards::Card *&sourceCard) {
+bool Controller::selectStackToTake(Models::Stack *&sourceStack, Models::Cards::Card *&sourceCard) {
 	int choosenBoardArea;
 	int choosenStack;
 	int choosenCard;
@@ -54,10 +55,10 @@ bool Controller::selectStackToTake(Stack *&sourceStack, Cards::Card *&sourceCard
 			choosenStack = this->IO.readInt(
 					"Enter the Foundation you want to access [1 .. " + std::to_string(this->board->getSuitNumberMax()) + "]");
 		} while (choosenStack < 1 || choosenStack >= this->board->getSuitNumberMax());
-		sourceStack = this->board->getFoundation(choosenStack);
+		sourceStack = &this->board->getFoundation(choosenStack);
 		if (sourceStack->getCardsNumber()) {
-			sourceCard = sourceStack->getLastCard();
-			if (((Foundation *) sourceStack)->canRemove(sourceCard)) {
+			sourceCard = &sourceStack->getLastCard();
+			if (((Models::Foundation *) sourceStack)->canRemove(*sourceCard)) {
 				result = true;
 			}
 		}
@@ -67,26 +68,26 @@ bool Controller::selectStackToTake(Stack *&sourceStack, Cards::Card *&sourceCard
 			choosenStack = this->IO.readInt(
 					"Enter the Tableau you want to access [1 .. " + std::to_string(this->board->getTableausNumberMax()) + "]");
 		} while (choosenStack < 1 || choosenStack > this->board->getTableausNumberMax());
-		sourceStack = this->board->getTableau(choosenStack - 1);
+		sourceStack = &this->board->getTableau(choosenStack - 1);
 		if (sourceStack->getCardsNumber()) {
 			do {
 				choosenCard = this->IO.readInt(
 						"Enter the card you want to access [1 .. "
 								+ std::to_string(
-										sourceStack->getCardsNumber() - ((Tableau *) sourceStack)->getHiddenCardsNumber()) + "]");
+										sourceStack->getCardsNumber() - ((Models::Tableau *) sourceStack)->getHiddenCardsNumber()) + "]");
 			} while (choosenCard < 1
-					|| choosenCard > (sourceStack->getCardsNumber() - ((Tableau *) sourceStack)->getHiddenCardsNumber()));
-			sourceCard = sourceStack->getCard(choosenCard);
-			if (((Tableau *) sourceStack)->canRemove(sourceCard)) {
+					|| choosenCard > (sourceStack->getCardsNumber() - ((Models::Tableau *) sourceStack)->getHiddenCardsNumber()));
+			sourceCard = &sourceStack->getCard(choosenCard);
+			if (((Models::Tableau *) sourceStack)->canRemove(*sourceCard)) {
 				result = true;
 			}
 		}
 		break;
 	case 3:
-		sourceStack = this->board->getStock();
-		if ((((Stock *) sourceStack)->getVisibleCardsNumber() > 0) && (sourceStack->getCardsNumber() > 0)) {
-			sourceCard = ((Stock *) sourceStack)->getLastCard();
-			if (((Stock *) sourceStack)->canRemove(sourceCard)) {
+		sourceStack = &this->board->getStock();
+		if ((((Models::Stock *) sourceStack)->getVisibleCardsNumber() > 0) && (sourceStack->getCardsNumber() > 0)) {
+			sourceCard = &((Models::Stock *) sourceStack)->getLastCard();
+			if (((Models::Stock *) sourceStack)->canRemove(*sourceCard)) {
 				result = true;
 			}
 		}
@@ -95,7 +96,7 @@ bool Controller::selectStackToTake(Stack *&sourceStack, Cards::Card *&sourceCard
 	return result;
 }
 
-bool Controller::selectStackToPut(StackAddable *&targetStack, Cards::Card *&sourceCard) {
+bool Controller::selectStackToPut(Models::StackAddable *&targetStack, Models::Cards::Card *&sourceCard) {
 
 	int choosenBoardArea;
 	int choosenStack;
@@ -111,8 +112,8 @@ bool Controller::selectStackToPut(StackAddable *&targetStack, Cards::Card *&sour
 					"Enter the Foundation where you want to insert your card(s) [1 .. "
 							+ std::to_string(this->board->getSuitNumberMax()) + "]");
 		} while (choosenStack < 1 || choosenStack > this->board->getSuitNumberMax());
-		targetStack = this->board->getFoundation(choosenStack - 1);
-		if (!((Foundation *) targetStack)->canAdd(sourceCard)) {
+		targetStack = &this->board->getFoundation(choosenStack - 1);
+		if (!((Models::Foundation *) targetStack)->canAdd(*sourceCard)) {
 			result = false;
 		}
 		break;
@@ -122,11 +123,13 @@ bool Controller::selectStackToPut(StackAddable *&targetStack, Cards::Card *&sour
 					"Enter the Tableau where you want to insert your card(s) [1 .. "
 							+ std::to_string(this->board->getTableausNumberMax()) + "]");
 		} while (choosenStack < 1 || choosenStack > this->board->getTableausNumberMax());
-		targetStack = this->board->getTableau(choosenStack - 1);
-		if (!((Tableau *) targetStack)->canAdd(sourceCard)) {
+		targetStack = &(this->board->getTableau(choosenStack - 1));
+		if (!((Models::Tableau *) targetStack)->canAdd(*sourceCard)) {
 			result = false;
 		}
 		break;
 	}
 	return result;
 }
+
+}  /* namespace Utils */

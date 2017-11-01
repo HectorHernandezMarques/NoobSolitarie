@@ -8,7 +8,7 @@
 #include "NoobSolitarie.h"
 
 NoobSolitarie::NoobSolitarie() :
-		IO(), board(SUIT_NUMBER, CARDS_PER_SUIT, PILES_NUMBER, GAME_MODE), controller(&this->board) {
+		IO(), board(SUIT_NUMBER, CARDS_PER_SUIT, PILES_NUMBER, GAME_MODE), controller(this->board) {
 
 }
 
@@ -29,8 +29,4 @@ void NoobSolitarie::run() {
 			break;
 		}
 	}
-}
-
-std::string NoobSolitarie::toString() {
-	return this->board.toString();
 }

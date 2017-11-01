@@ -10,22 +10,21 @@
 
 #include <iostream>
 #include "Utils/IO.h"
-#include "Board.h"
-#include "Controller.h"
+#include "Models/Board.h"
+#include "Controllers/Controller.h"
 #include "Definitions.h"
 
 class NoobSolitarie {
 private:
 	Utils::IO IO;
-	Board board;
-	Controller controller;
+	Models::Board board;
+	Controllers::Controller controller;
 
 public:
 	NoobSolitarie();
 	virtual ~NoobSolitarie();
 
 	void run();
-	std::string toString();
 };
 
 #endif /* NOOBSOLITARIE_H_ */

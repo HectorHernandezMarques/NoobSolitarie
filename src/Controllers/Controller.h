@@ -14,7 +14,7 @@
 namespace Controllers {
 
 class Controller {
-private:
+protected:
 	Models::Board *board;
 	Utils::IO IO;
 
@@ -22,6 +22,7 @@ public:
 	Controller(Models::Board &board);
 	virtual ~Controller();
 
+	virtual void control() = 0;
 	void printBoard();
 	void flipCard();
 	void moveCard();

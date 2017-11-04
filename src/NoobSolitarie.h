@@ -11,14 +11,18 @@
 #include <iostream>
 #include "Utils/IO.h"
 #include "Models/Board.h"
-#include "Controllers/Controller.h"
+#include "Controllers/StartController.h"
+#include "Controllers/FlipController.h"
+#include "Controllers/MoveController.h"
 #include "Definitions.h"
 
 class NoobSolitarie {
 private:
 	Utils::IO IO;
 	Models::Board board;
-	Controllers::Controller controller;
+	Controllers::StartController startController;
+	Controllers::FlipController flipController;
+	Controllers::MoveController moveController;
 
 public:
 	NoobSolitarie();

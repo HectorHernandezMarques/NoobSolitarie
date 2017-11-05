@@ -14,13 +14,13 @@ Board::Board(int suitNumberMax, int cardsPerSuitMax, int tableausNumberMax, int 
 	int j;
 	for (int i = 0; i < this->tableausNumberMax; i++) {
 		for (j = 0; j <= i; j++) {
-			this->tableau[i].add(*new Utils::Node<Cards::Card>(&this->deck.getRandomCard(), nullptr, nullptr));
+			this->tableau[i].add(this->deck.getRandomCard());
 		}
 		this->tableau[i].setHiddenCardsNumber(j - 1);
 	}
 
 	while (this->deck.isThereCardsToGive()) {
-		this->stock.add(*new Utils::Node<Cards::Card>(&this->deck.getRandomCard(), nullptr, nullptr));
+		this->stock.add(this->deck.getRandomCard());
 	}
 	this->stock.setHiddenCardsNumber(this->stock.getCardsNumber());
 

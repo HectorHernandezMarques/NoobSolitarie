@@ -11,18 +11,18 @@ private:
 	int hiddenCardsNumber;
 	int visibleCardsNumber;
 
-	Utils::Node<Cards::Card>& remove(int index);
+	Utils::Stack<Cards::Card>& remove(int index);
 
 public:
 	Stock(int visibleCardsMax);
-	Stock(Utils::Node<Cards::Card> &cards, int visibleCardsMax);
+	Stock(Utils::Stack<Cards::Card> &cards, int visibleCardsMax);
 	virtual ~Stock();
 
 	bool canFlip();
 	void flip();
 	bool canRemove(Cards::Card &card);
 
-	Cards::Card& getLastCard();
+	Cards::Card& getRelativeCard();
 	int getVisibleCardsNumber();
 	int getHiddenCardsNumber();
 	void setHiddenCardsNumber(int hiddenCardsNumber);

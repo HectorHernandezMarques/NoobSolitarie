@@ -8,7 +8,7 @@ namespace Models{
 class StackAddable: public Stack {
 public:
 	StackAddable();
-	StackAddable(Utils::Node<Cards::Card> &card);
+	StackAddable(Utils::Stack<Cards::Card> &card);
 	virtual ~StackAddable();
 
 	virtual bool canAdd(Cards::Card &card) = 0;

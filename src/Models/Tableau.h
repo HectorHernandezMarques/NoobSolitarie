@@ -10,17 +10,17 @@ class Tableau: public StackAddable {
 private:
 	int hiddenCardsNumber;
 
-	Utils::Node<Cards::Card>& remove(int index);
+	Utils::Stack<Cards::Card>& remove(int index);
 
 public:
 	Tableau();
-	Tableau(Utils::Node<Cards::Card> &card);
+	Tableau(Utils::Stack<Cards::Card> &card);
 	virtual ~Tableau();
 
 	bool canAdd(Cards::Card &card);
 	bool canRemove(Cards::Card &card);
 
-	Cards::Card& getCard(int relativeIndex);
+	Cards::Card& getRelativeCard(int relativeIndex);
 	int getHiddenCardsNumber();
 	void setHiddenCardsNumber(int hiddenCardsNumber);
 };

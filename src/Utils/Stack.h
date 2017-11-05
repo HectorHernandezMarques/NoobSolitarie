@@ -9,144 +9,123 @@
 #define UITLS_STACK_H_
 
 #include <cassert>
-#include "Node.h"
+#include <list>
 
 namespace Utils {
 
 template<class T>
 class Stack {
 private:
-	Node<T>* getWithReferences(int index);
-	Node<T>* firstItem;
-	Node<T>* lastItem;
-	int itemsNumber = 0;
+	std::list<T> list;
 
 protected:
 
 public:
 	Stack();
-	Stack(Node<T> &item);
+	Stack(T &item);
+	Stack(Stack<T> &item);
+	Stack(std::list<T> &item);
 	virtual ~Stack();
 
-	void add(Node<T> &item);
-	Node<T>& remove(int index);
-	Node<T>& removeUntilEnd(int index);
-	T& get(int index);
-	T& getLast() {
-		return this->get(this->itemsNumber - 1);
-	}
+	void add(T &item);
+	void add(Stack<T> &items);
+	Stack<T>& remove(unsigned int index);
+	Stack<T>& removeUntilEnd(unsigned int index);
+	T& get(unsigned int index);
+	T& getLast();
 	int getIndex(T &item);
-
-	int getItemsNumber() {
-		return this->itemsNumber;
-	}
+	int getItemsNumber();
 };
 
-template<class T> Stack<T>::Stack() {
-	this->firstItem = nullptr;
-	this->lastItem = nullptr;
-	this->itemsNumber = 0;
+template<class T> Stack<T>::Stack() :
+		list(0) {
 }
 
-template<class T> Stack<T>::Stack(Node<T> &item) :
-		Stack() {
+template<class T> Stack<T>::Stack(T &item) :
+		list(1, item) {
 	assert(&item);
-	assert(item.getElement());
-	assert(!item.getPreviousElement());
+}
 
-	this->add(item);
+template<class T> Stack<T>::Stack(Stack<T> &items) :
+		list(items.list) {
+	assert(&items);
+}
+
+template<class T> Stack<T>::Stack(std::list<T> &items) :
+		list(items) {
+	assert(&items);
 }
 
 template<class T> Stack<T>::~Stack() {
 }
 
-template<class T> void Stack<T>::add(Node<T> &item) {
+template<class T> void Stack<T>::add(T &item) {
 	assert(&item);
-	assert(item.getElement());
-	assert(!item.getPreviousElement());
 
-	if (!this->firstItem) {
-		this->firstItem = &item;
-		this->lastItem = &item;
-		this->itemsNumber++;
-	} else {
-		this->lastItem->setNextElement(&item);
-		item.setPreviousElement(this->lastItem);
-	}
-
-	for (; this->lastItem->getNextElement(); this->itemsNumber++) {
-		this->lastItem = this->lastItem->getNextElement();
-	}
+	this->list.push_back(item);
 }
 
-template<class T> Node<T>& Stack<T>::remove(int index) {
-	assert(this->itemsNumber);
-	assert(0 <= index && index < this->itemsNumber);
+template<class T> void Stack<T>::add(Stack<T> &items) {
+	assert(&items);
 
-	Node<T> *currentItem = this->getWithReferences(index);
-
-	if (currentItem->getPreviousElement()) {
-		currentItem->getPreviousElement()->setNextElement(currentItem->getNextElement());
-	} else {
-		this->firstItem = currentItem->getNextElement();
-	}
-	if (currentItem->getNextElement()) {
-		currentItem->getNextElement()->setPreviousElement(currentItem->getPreviousElement());
-	} else {
-		this->lastItem = currentItem->getPreviousElement();
-	}
-	this->itemsNumber--;
-
-	currentItem->setNextElement(nullptr);
-	currentItem->setPreviousElement(nullptr);
-	return *currentItem;
+	this->list.splice(list.end(), items.list);
 }
 
-template<class T> Node<T>& Stack<T>::removeUntilEnd(int index) {
-	assert(this->itemsNumber);
-	assert(0 <= index && index < this->itemsNumber);
+template<class T> Stack<T>& Stack<T>::remove(unsigned int index) {
+	assert(this->list.size());
+	assert(0 <= index && index < this->list.size());
 
-	Node<T> *currentItem = this->getWithReferences(index);
-
-	if (currentItem->getPreviousElement()) {
-		currentItem->getPreviousElement()->setNextElement(nullptr);
-	} else {
-		this->firstItem = nullptr;
-	}
-	this->lastItem = currentItem->getPreviousElement();
-	currentItem->setPreviousElement(nullptr);
-	this->itemsNumber = index;
-	return *currentItem;
+	auto it = this->list.begin();
+	std::advance(it, index);
+	std::list<T> tempList(it, it);
+	this->list.erase(it);
+	Stack<T> result(tempList);
+	return result;
 }
 
-template<class T> T& Stack<T>::get(int index) {
-	assert(this->itemsNumber);
-	assert(0 <= index && index < this->itemsNumber);
+template<class T> Stack<T>& Stack<T>::removeUntilEnd(unsigned int index) {
+	assert(this->list.size());
+	assert(0 <= index && index < this->list.size());
 
-	return *this->getWithReferences(index)->getElement();
+	auto it = this->list.begin();
+	std::advance(it, index);
+	std::list<T> tempList(it, this->list.end());
+	this->list.erase(it, this->list.end());
+	Stack<T> result(tempList);
+	return result;
 }
 
-template<class T> Node<T>* Stack<T>::getWithReferences(int index) {
-	assert(this->itemsNumber);
-	assert(0 <= index && index < this->itemsNumber);
+template<class T> T& Stack<T>::get(unsigned int index) {
+	assert(this->list.size());
+	assert(0 <= index && index < this->list.size());
 
-	Node<T> *currentItem = this->firstItem;
-	for (int i = 0; i < index; i++) {
-		currentItem = currentItem->getNextElement();
-	}
-	return currentItem;
+	auto it = this->list.begin();
+	std::advance(it, index);
+
+	return *it;
+}
+
+template<class T> T& Stack<T>::getLast() {
+	assert(this->list.size());
+
+	return this->get(this->getItemsNumber() - 1);
 }
 
 template<class T> int Stack<T>::getIndex(T &item) {
-	assert(this->itemsNumber);
+	assert(this->list.size());
+	assert(&item);
 
-	Node<T> *currentItem = this->firstItem;
-	int i;
-	for (i = 0; *currentItem->getElement() != item && i < this->itemsNumber; i++) {
-		currentItem = currentItem->getNextElement();
+	int i = 0;
+	auto it = this->list.begin();
+	for (; it != this->list.end() && *it != item; ++it) {
+		i++;
 	}
-	assert(i <= this->itemsNumber);
+	assert(it != this->list.end());
 	return i;
+}
+
+template<class T> int Stack<T>::getItemsNumber() {
+	return this->list.size();
 }
 
 } /* namespace Utils */

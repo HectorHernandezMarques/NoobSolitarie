@@ -6,7 +6,7 @@ StackAddable::StackAddable() :
 		Stack() {
 }
 
-StackAddable::StackAddable(Utils::Node<Cards::Card> &card) :
+StackAddable::StackAddable(Utils::Stack<Cards::Card> &card) :
 		Stack(card) {
 }
 StackAddable::~StackAddable() {

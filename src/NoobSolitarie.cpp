@@ -8,7 +8,7 @@
 #include "NoobSolitarie.h"
 
 NoobSolitarie::NoobSolitarie() :
-		IO(), board(SUIT_NUMBER, CARDS_PER_SUIT, PILES_NUMBER, GAME_MODE), startController(this->board), moveController(this->board), flipController(this->board) {
+		IO(), board(SUIT_NUMBER, CARDS_PER_SUIT, PILES_NUMBER, GAME_MODE), startController(this->board), flipController(this->board), moveController(this->board) {
 
 }
 

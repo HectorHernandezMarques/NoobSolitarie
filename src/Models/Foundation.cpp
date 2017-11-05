@@ -6,15 +6,15 @@ Foundation::Foundation() :
 		StackAddable() {
 }
 
-Foundation::Foundation(Utils::Node<Cards::Card> &card) :
+Foundation::Foundation(Utils::Stack<Cards::Card> &card) :
 		StackAddable(card) {
 }
 
 Foundation::~Foundation() {
 }
 
-Utils::Node<Cards::Card>& Foundation::remove(int index) {
-	assert(0 <= index < this->getCardsNumber());
+Utils::Stack<Cards::Card>& Foundation::remove(int index) {
+	assert(0 <= index && index < this->getCardsNumber());
 
 	return this->stack.remove(index);
 }
@@ -26,7 +26,7 @@ bool Foundation::canAdd(Cards::Card &card) {
 	if (this->getCardsNumber() == 0) {
 		result = card.isFirstNumber();
 	} else {
-		result = card.isSameSuitThan(this->stack.getLast()) && card.isNextNumberOf(this->stack.getLast());
+		result = card.isSameSuitThan(this->getLastCard()) && card.isNextNumberOf(this->getLastCard());
 	}
 	return result;
 }
@@ -38,8 +38,8 @@ bool Foundation::canRemove(Cards::Card &card) {
 	return index == (this->getCardsNumber() - 1);
 }
 
-Cards::Card& Foundation::getCard() {
-	return stack.get(this->getCardsNumber() - 1);
+Cards::Card& Foundation::getRelativeCard() {
+	return this->getCard(this->getCardsNumber() - 1);
 }
 
 } /* namespace Models */

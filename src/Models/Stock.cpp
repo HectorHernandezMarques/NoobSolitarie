@@ -9,7 +9,7 @@ Stock::Stock(int visibleCardsMax) :
 	this->visibleCardsNumber = 0;
 }
 
-Stock::Stock(Utils::Node<Cards::Card> &card, int visibleCardsMax) :
+Stock::Stock(Utils::Stack<Cards::Card> &card, int visibleCardsMax) :
 		Stack(card) {
 	assert(&card);
 
@@ -21,7 +21,7 @@ Stock::Stock(Utils::Node<Cards::Card> &card, int visibleCardsMax) :
 Stock::~Stock() {
 }
 
-Utils::Node<Cards::Card>& Stock::remove(int index) {
+Utils::Stack<Cards::Card>& Stock::remove(int index) {
 	assert(0 <= index && index < this->getCardsNumber());
 
 	this->visibleCardsNumber--;
@@ -54,7 +54,7 @@ bool Stock::canRemove(Cards::Card &card) {
 			&& index < (this->getCardsNumber() - this->hiddenCardsNumber);
 }
 
-Cards::Card& Stock::getLastCard() {
+Cards::Card& Stock::getRelativeCard() {
 	assert(this->getCardsNumber());
 
 	return this->stack.get(this->getCardsNumber() - this->hiddenCardsNumber - this->visibleCardsNumber);

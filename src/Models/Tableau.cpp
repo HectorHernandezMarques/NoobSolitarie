@@ -7,7 +7,7 @@ Tableau::Tableau() :
 	this->hiddenCardsNumber = 0;
 }
 
-Tableau::Tableau(Utils::Node<Cards::Card> &card) :
+Tableau::Tableau(Utils::Stack<Cards::Card> &card) :
 		StackAddable(card) {
 	assert(&card);
 
@@ -17,8 +17,8 @@ Tableau::Tableau(Utils::Node<Cards::Card> &card) :
 Tableau::~Tableau() {
 }
 
-Utils::Node<Cards::Card>& Tableau::remove(int index) {
-	assert(0 <= index < this->getCardsNumber());
+Utils::Stack<Cards::Card>& Tableau::remove(int index) {
+	assert(0 <= index && index < this->getCardsNumber());
 
 	this->hiddenCardsNumber =
 			(index == this->hiddenCardsNumber && this->hiddenCardsNumber > 0) ?
@@ -47,11 +47,11 @@ bool Tableau::canRemove(Cards::Card &card) {
 	return this->hiddenCardsNumber <= index && index < this->getCardsNumber();
 }
 
-Cards::Card& Tableau::getCard(int relativeIndex) {
+Cards::Card& Tableau::getRelativeCard(int relativeIndex) {
 	assert(0 < relativeIndex && relativeIndex <= this->getCardsNumber());
 
 	int absoluteIndex = this->getCardsNumber() - relativeIndex;
-	return stack.get(absoluteIndex);
+	return this->getCard(absoluteIndex);
 }
 
 int Tableau::getHiddenCardsNumber() {

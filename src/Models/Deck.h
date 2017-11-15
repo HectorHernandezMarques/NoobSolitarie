@@ -2,16 +2,15 @@
 #define CARDS_DECK_H_
 
 #include <time.h>
-#include "Card.h"
+#include "Cards/Card.h"
 
 namespace Models{
-namespace Cards {
 
 class Deck {
 private:
 	int suitNumberMax;
 	int cardsPerSuitMax;
-	Card **cards;
+	Cards::Card **cards;
 	int servedCardsNumber;
 	bool *servedCards;
 
@@ -20,15 +19,14 @@ public:
 	virtual ~Deck() {
 	}
 
-	Card& getRandomCard();
+	Cards::Card& getRandomCard();
 	void resetDeck();
 	bool isThereCardsToGive();
 
-	Card& getCard(int suit, int number);
-	Card& getCard(int absoluteIndex);
+	Cards::Card& getCard(int suit, int number);
+	Cards::Card& getCard(int absoluteIndex);
 };
 
-} /* namespace Cards */
 } /* namespace Models */
 
 #endif /* CARDS_DECK_H_ */

@@ -10,10 +10,12 @@
 using namespace std;
 
 #include "NoobSolitarie.h"
+#include "Controllers/Local/Logic.h"
+#include "Views/Console/NoobSolitarieView.h"
 
 int main() {
-	NoobSolitarie game;
-	game.run();
+	NoobSolitarie noobSolitarie(*new Controllers::Local::Logic(), *new Views::Console::NoobSolitarieView());
+	noobSolitarie.run();
 
 	std::getchar();
 	return 0;

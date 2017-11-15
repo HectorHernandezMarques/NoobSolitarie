@@ -11,7 +11,7 @@ public:
 	StackAddable(Utils::Stack<Cards::Card> &card);
 	virtual ~StackAddable();
 
-	virtual bool canAdd(Cards::Card &card) = 0;
+	virtual bool canAdd(Utils::Stack<Cards::Card> &card) = 0;
 };
 
 } /* namespace Models */

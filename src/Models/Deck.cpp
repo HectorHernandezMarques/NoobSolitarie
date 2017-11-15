@@ -1,7 +1,6 @@
 #include "Deck.h"
 
 namespace Models{
-namespace Cards {
 
 Deck::Deck(int suitNumberMax, int cardsPerSuitMax) {
 	assert(0 < suitNumberMax);
@@ -10,20 +9,20 @@ Deck::Deck(int suitNumberMax, int cardsPerSuitMax) {
 	std::srand(time(nullptr));
 	this->suitNumberMax = suitNumberMax;
 	this->cardsPerSuitMax = cardsPerSuitMax;
-	this->cards = new Card*[this->suitNumberMax];
+	this->cards = new Cards::Card*[this->suitNumberMax];
 	for (int i = 0; i < this->suitNumberMax; ++i) {
-		this->cards[i] = new Card[this->cardsPerSuitMax];
+		this->cards[i] = new Cards::Card[this->cardsPerSuitMax];
 	}
 	for (int i = 0; i < this->suitNumberMax; i++) {
 		for (int j = 0; j < this->cardsPerSuitMax; j++) {
-			this->cards[i][j] = *new Card(i, j, this->cardsPerSuitMax);
+			this->cards[i][j] = *new Cards::Card(i, j, this->cardsPerSuitMax);
 		}
 	}
 	this->servedCards = new bool[this->suitNumberMax * this->cardsPerSuitMax];
 	this->resetDeck();
 }
 
-Card& Deck::getRandomCard() {
+Cards::Card& Deck::getRandomCard() {
 	assert(this->isThereCardsToGive());
 
 	int nextCard = rand() % (this->suitNumberMax * this->cardsPerSuitMax);
@@ -46,18 +45,17 @@ bool Deck::isThereCardsToGive() {
 	return (this->suitNumberMax * this->cardsPerSuitMax) > this->servedCardsNumber;
 }
 
-Card& Deck::getCard(int suit, int number) {
+Cards::Card& Deck::getCard(int suit, int number) {
 	assert(0 <= suit && suit < this->suitNumberMax);
 	assert(0 <= number && number < this->cardsPerSuitMax);
 
 	return cards[suit][number];
 }
 
-Card& Deck::getCard(int absoluteIndex) {
+Cards::Card& Deck::getCard(int absoluteIndex) {
 	assert(0 <= absoluteIndex && absoluteIndex < (this->suitNumberMax * this->cardsPerSuitMax));
 
 	return cards[absoluteIndex / cardsPerSuitMax][absoluteIndex % cardsPerSuitMax];
 }
 
-} /* namespace Cards */
 } /* namespace Models */

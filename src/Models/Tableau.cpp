@@ -1,6 +1,6 @@
 #include "Tableau.h"
 
-namespace Models{
+namespace Models {
 
 Tableau::Tableau() :
 		StackAddable() {
@@ -27,15 +27,14 @@ Utils::Stack<Cards::Card>& Tableau::remove(int index) {
 	return this->stack.removeUntilEnd(index);
 }
 
-bool Tableau::canAdd(Cards::Card &card) {
-	assert(&card);
+bool Tableau::canAdd(Utils::Stack<Cards::Card> &cards) {
+	assert(&cards);
 
 	bool result = false;
 	if (this->getCardsNumber()) {
-		result = !this->stack.getLast().isSameSuitParityOf(card)
-				&& this->stack.getLast().isNextNumberOf(card);
+		result = !this->stack.getLast().isSameSuitParityOf(cards.get(0)) && this->stack.getLast().isNextNumberOf(cards.get(0));
 	} else {
-		result = card.isLastNumber();
+		result = cards.get(0).isLastNumber();
 	}
 	return result;
 }
@@ -47,15 +46,15 @@ bool Tableau::canRemove(Cards::Card &card) {
 	return this->hiddenCardsNumber <= index && index < this->getCardsNumber();
 }
 
-Cards::Card& Tableau::getRelativeCard(int relativeIndex) {
-	assert(0 < relativeIndex && relativeIndex <= this->getCardsNumber());
+bool Tableau::canRemoveRelativeCards(int relativeIndex) {
+	assert(0 < relativeIndex);
 
-	int absoluteIndex = this->getCardsNumber() - relativeIndex;
-	return this->getCard(absoluteIndex);
-}
+	bool result = false;
+	if (0 < relativeIndex && relativeIndex <= (this->getCardsNumber() - this->hiddenCardsNumber)) {
+		result = this->canRemove(this->getRelativeCards(relativeIndex).get(0));
+	}
 
-int Tableau::getHiddenCardsNumber() {
-	return this->hiddenCardsNumber;
+	return result;
 }
 
 void Tableau::setHiddenCardsNumber(int hiddenCardsNumber) {
@@ -64,4 +63,24 @@ void Tableau::setHiddenCardsNumber(int hiddenCardsNumber) {
 	this->hiddenCardsNumber = hiddenCardsNumber;
 }
 
+Utils::Stack<Cards::Card>& Tableau::getRelativeCards(int relativeIndex) {
+	assert(0 < relativeIndex && relativeIndex <= this->getCardsNumber());
+
+	int absoluteIndex = this->getCardsNumber() - relativeIndex;
+	return this->getUntilEnd(absoluteIndex);
+}
+
+Utils::Stack<Cards::Card>& Tableau::getVisibleCards(){
+	assert(this->getCardsNumber());
+
+	return this->getUntilEnd(this->hiddenCardsNumber);
+}
+
+int Tableau::getHiddenCardsNumber() {
+	return this->hiddenCardsNumber;
+}
+
+int Tableau::getVisibleCardsNumber() {
+	return this->getCardsNumber() - this->hiddenCardsNumber;
+}
 } /* namespace Models */

@@ -1,23 +1,13 @@
-/*
- * FlipController.h
- *
- *  Created on: Nov 4, 2017
- *      Author: eherhes
- */
-
 #ifndef CONTROLLERS_FLIPCONTROLLER_H_
 #define CONTROLLERS_FLIPCONTROLLER_H_
 
-#include "Controller.h"
+#include "ActionController.h"
 
 namespace Controllers {
 
-class FlipController : public Controller{
+class FlipController : public virtual ActionController{
 public:
-	FlipController(Models::Board &board);
-	virtual ~FlipController();
-
-	void control();
+	virtual Error flip() = 0;
 };
 
 } /* namespace Controller */

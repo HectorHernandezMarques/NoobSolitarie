@@ -19,14 +19,17 @@ Utils::Stack<Cards::Card>& Foundation::remove(int index) {
 	return this->stack.remove(index);
 }
 
-bool Foundation::canAdd(Cards::Card &card) {
-	assert(&card);
+bool Foundation::canAdd(Utils::Stack<Cards::Card> &cards) {
+	assert(&cards);
+	assert(cards.getItemsNumber() > 0);
 
 	bool result = false;
-	if (this->getCardsNumber() == 0) {
-		result = card.isFirstNumber();
-	} else {
-		result = card.isSameSuitThan(this->getLastCard()) && card.isNextNumberOf(this->getLastCard());
+	if (cards.getItemsNumber() == 1) {
+		if (this->getCardsNumber() == 0) {
+			result = cards.get(0).isFirstNumber();
+		} else {
+			result = cards.get(0).isSameSuitThan(this->getLastCard()) && cards.get(0).isNextNumberOf(this->getLastCard());
+		}
 	}
 	return result;
 }
@@ -38,8 +41,28 @@ bool Foundation::canRemove(Cards::Card &card) {
 	return index == (this->getCardsNumber() - 1);
 }
 
-Cards::Card& Foundation::getRelativeCard() {
-	return this->getCard(this->getCardsNumber() - 1);
+bool Foundation::canRemoveRelativeCards() {
+	bool result = false;
+	if (this->getCardsNumber()) {
+		result = this->canRemove(this->getRelativeCards().get(0));
+	}
+	return result;
+}
+
+Utils::Stack<Cards::Card>& Foundation::getRelativeCards() {
+	assert(this->getCardsNumber());
+
+	return *new Utils::Stack<Cards::Card>(this->getLastCard());
+}
+
+Utils::Stack<Cards::Card>& Foundation::getVisibleCards() {
+	assert(this->getCardsNumber());
+
+	return this->getUntilEnd(this->getCardsNumber() - 1);
+}
+
+int Foundation::getVisibleCardsNumber() {
+	return this->getCardsNumber()?1:0;
 }
 
 } /* namespace Models */

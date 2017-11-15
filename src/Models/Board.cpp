@@ -30,6 +30,14 @@ Board::Board(int suitNumberMax, int cardsPerSuitMax, int tableausNumberMax, int 
 Board::~Board() {
 }
 
+bool Board::canFlip(){
+	return this->stock.canFlip();
+}
+
+void Board::flip(){
+	return this->stock.flip();
+}
+
 int Board::getCardsPerSuitMax() {
 	return this->cardsPerSuitMax;
 }
@@ -42,7 +50,7 @@ int Board::getTableausNumberMax() {
 	return this->tableausNumberMax;
 }
 
-Cards::Deck& Board::getDeck() {
+Deck& Board::getDeck() {
 	return this->deck;
 }
 
@@ -60,6 +68,10 @@ Foundation& Board::getFoundation(int index) {
 
 Stock& Board::getStock() {
 	return this->stock;
+}
+
+int Board::getVisibleCardsNumberFromTableau(int index) {
+	return this->tableau[index].getVisibleCardsNumber();
 }
 
 } /* namespace Models */

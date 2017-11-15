@@ -1,7 +1,7 @@
 #ifndef BOARD_H_
 #define BOARD_H_
 
-#include "Cards/Deck.h"
+#include "Deck.h"
 #include "Tableau.h"
 #include "Foundation.h"
 #include "Stock.h"
@@ -13,7 +13,7 @@ private:
 	int suitNumberMax;
 	int cardsPerSuitMax;
 	int tableausNumberMax;
-	Cards::Deck deck;
+	Deck deck;
 
 	Tableau *tableau;
 	Foundation *foundation;
@@ -23,15 +23,17 @@ public:
 	Board(int suitNumberMax, int cardsPerSuitMax, int tableausNumberMax, int stockVisibleCardsMax);
 	virtual ~Board();
 
-	std::string toString();
+	bool canFlip();
+	void flip();
 
 	int getCardsPerSuitMax();
 	int getSuitNumberMax();
 	int getTableausNumberMax();
-	Cards::Deck& getDeck();
+	Deck& getDeck();
 	Tableau& getTableau(int index);
 	Foundation& getFoundation(int index);
 	Stock& getStock();
+	int getVisibleCardsNumberFromTableau(int index);
 };
 
 } /* namespace Models */

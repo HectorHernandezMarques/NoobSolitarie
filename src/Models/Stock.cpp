@@ -24,7 +24,13 @@ Stock::~Stock() {
 Utils::Stack<Cards::Card>& Stock::remove(int index) {
 	assert(0 <= index && index < this->getCardsNumber());
 
-	this->visibleCardsNumber--;
+	if ((this->getCardsNumber() - this->getHiddenCardsNumber()) > 1 && this->visibleCardsNumber > 1) {
+		if(this->visibleCardsNumber > 1){
+			this->visibleCardsNumber--;
+		}
+	} else {
+		this->visibleCardsNumber = 0;
+	}
 	return this->stack.remove(index);
 }
 
@@ -50,22 +56,44 @@ bool Stock::canRemove(Cards::Card &card) {
 	assert(&card);
 
 	int index = this->stack.getIndex(card);
-	return (this->getCardsNumber() - this->hiddenCardsNumber - this->visibleCardsNumber) <= index
-			&& index < (this->getCardsNumber() - this->hiddenCardsNumber);
+	return index == (this->getCardsNumber() - this->hiddenCardsNumber - 1);
 }
 
-Cards::Card& Stock::getRelativeCard() {
+bool Stock::canRemoveRelativeCards() {
+	bool result = false;
+	if(this->getCardsNumber()){
+		result = this->canRemove(this->getRelativeCards().get(0));
+	}
+	return result;
+}
+
+Utils::Stack<Cards::Card>& Stock::getRelativeCards() {
 	assert(this->getCardsNumber());
 
-	return this->stack.get(this->getCardsNumber() - this->hiddenCardsNumber - this->visibleCardsNumber);
+	return *new Utils::Stack<Cards::Card>(this->stack.get(this->getCardsNumber() - this->hiddenCardsNumber - 1));
 }
 
-int Stock::getVisibleCardsNumber() {
-	return visibleCardsNumber;
+Utils::Stack<Cards::Card>& Stock::getVisibleCards() {
+	assert(this->getCardsNumber());
+	assert(this->getVisibleCardsNumber());
+
+	Utils::Stack<Cards::Card> *result = new Utils::Stack<Cards::Card>;
+	for(int i = 0; i < this->getVisibleCardsNumber(); i++){
+		result->add(this->getCard(this->getCardsNumber() - this->getHiddenCardsNumber() - this->getVisibleCardsNumber() + i));
+	}
+	return *result;
+}
+
+int Stock::getVisibleCardsMax() {
+	return this->visibleCardsMax;
 }
 
 int Stock::getHiddenCardsNumber() {
-	return hiddenCardsNumber;
+	return this->hiddenCardsNumber;
+}
+
+int Stock::getVisibleCardsNumber() {
+	return this->visibleCardsNumber;
 }
 
 void Stock::setHiddenCardsNumber(int hiddenCardsNumber) {

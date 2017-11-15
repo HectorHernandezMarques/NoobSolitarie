@@ -1,10 +1,3 @@
-/*
- * ClosedInterval.cpp
- *
- *  Created on: Nov 1, 2017
- *      Author: eherhes
- */
-
 #include "ClosedInterval.h"
 
 namespace Utils {
@@ -21,6 +14,14 @@ ClosedInterval::~ClosedInterval() {
 
 bool ClosedInterval::includes(int value) {
 	return min <= value && value <= max;
+}
+
+int ClosedInterval::getMax(){
+	return this->max;
+}
+
+int ClosedInterval::getMin(){
+	return this->min;
 }
 
 } /* namespace Utils */

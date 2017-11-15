@@ -13,10 +13,14 @@ public:
 	Foundation(Utils::Stack<Cards::Card> &card);
 	virtual ~Foundation();
 
-	bool canAdd(Cards::Card &card);
+	bool canAdd(Utils::Stack<Cards::Card> &cards);
 	bool canRemove(Cards::Card &card);
+	bool canRemoveRelativeCards();
 
-	Cards::Card& getRelativeCard();
+	Utils::Stack<Cards::Card>& getRelativeCards();
+	Utils::Stack<Cards::Card>& getVisibleCards();
+	int getVisibleCardsNumber();
+
 };
 
 } /* namespace Models */

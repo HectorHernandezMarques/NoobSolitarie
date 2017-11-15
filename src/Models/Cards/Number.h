@@ -11,6 +11,7 @@ private:
 protected:
 	int number;
 	int maxNumber;
+
 public:
 	Number();
 	Number(int number, int maxNumber);
@@ -23,6 +24,7 @@ public:
 	bool operator==(Number &cardNumber);
 
 	int getNumber();
+
 };
 
 } /* namespace Cards */

@@ -17,6 +17,8 @@ public:
 
 	bool isSameParityOf(Suit &suit);
 	bool operator==(Suit &suit);
+
+	int getSuit();
 };
 
 } /* namespace Cards */

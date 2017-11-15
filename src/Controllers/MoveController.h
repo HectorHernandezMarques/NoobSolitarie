@@ -1,25 +1,20 @@
-/*
- * MoveController.h
- *
- *  Created on: Nov 4, 2017
- *      Author: eherhes
- */
-
 #ifndef CONTROLLERS_MOVECONTROLLER_H_
 #define CONTROLLERS_MOVECONTROLLER_H_
 
-#include "Controller.h"
+#include "ActionController.h"
 
 namespace Controllers {
 
-class MoveController : public Controller{
+class MoveController : public virtual ActionController{
 public:
-	MoveController(Models::Board &board);
-	virtual ~MoveController();
+	virtual Error canTakeCardFromFoundation(int foundationIndex) = 0;
+	virtual Error canTakeCardFromTableau(int tableauIndex, int relativeCardIndex) = 0;
+	virtual Error canTakeCardFromStock() = 0;
+	virtual Error canPutCard(Models::StackAddable &stackAddable, Utils::Stack<Models::Cards::Card> &cards) = 0;
+	virtual Error selectCardsToTake() = 0;
+	virtual Error selectCardsToPut() = 0;
 
-	void control();
-	bool selectStackToTake(Models::Stack *&sourceStack, Models::Cards::Card *&sourceCard);
-	bool selectStackToPut(Models::StackAddable *&targetStack, Models::Cards::Card *&sourceCard);
+	virtual int getVisibleCardsNumberFromTableau(int index) = 0;
 };
 
 } /* namespace Controller */

@@ -24,6 +24,9 @@ public:
 
 	virtual Cards::Card& getCard(int index);
 	virtual Cards::Card& getLastCard();
+	Utils::Stack<Cards::Card>& getUntilEnd(int index);
+	virtual Utils::Stack<Cards::Card>& getVisibleCards() = 0;
+	virtual int getVisibleCardsNumber() = 0;
 	int getCardsNumber();
 };
 

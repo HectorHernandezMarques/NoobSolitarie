@@ -1,36 +1,23 @@
-/*
- * Controller.h
- *
- *  Created on: Oct 18, 2017
- *      Author: eherhes
- */
+#ifndef CONTROLLERS_CONTROLLER_H_
+#define CONTROLLERS_CONTROLLER_H_
 
-#ifndef CONTROLLER_H_
-#define CONTROLLER_H_
-
-#include "../Models/Board.h"
-#include "../Utils/IO.h"
+#include "../Models/Game.h"
+#include "Error.h"
 
 namespace Controllers {
 
-class Controller {
-protected:
-	Models::Board *board;
-	Utils::IO IO;
-
+class Controller{
 public:
-	Controller(Models::Board &board);
-	virtual ~Controller();
-
-	virtual void control() = 0;
-	void printBoard();
-	void flipCard();
-	void moveCard();
-	bool selectStackToTake(Models::Stack *&sourceStack, Models::Cards::Card *&sourceCard);
-	bool selectStackToPut(Models::StackAddable *&targetStack, Models::Cards::Card *&sourceCard);
-	void putCard(Models::Cards::Card &card);
+	virtual Models::State getState() = 0;
+	virtual Models::Board& getBoard() = 0;
+	virtual void setState(Models::State state) = 0;
+	virtual int getSuitNumberMax() = 0;
+	virtual int getTableausNumberMax() = 0;
+	virtual Models::Tableau& getTableau(int index) = 0;
+	virtual Models::Foundation& getFoundation(int index) = 0;
+	virtual Models::Stock& getStock() = 0;
 };
 
-}  /* namespace Utils */
+} /* namespace Controllers */
 
-#endif /* CONTROLLER_H_ */
+#endif /* CONTROLLERS_CONTROLLER_H_ */

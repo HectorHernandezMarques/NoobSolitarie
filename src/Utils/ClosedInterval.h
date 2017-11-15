@@ -14,6 +14,9 @@ public:
 	ClosedInterval(int min, int max);
 	virtual ~ClosedInterval();
 	bool includes(int value);
+
+	int getMax();
+	int getMin();
 };
 
 } /* namespace Utils */

@@ -1,16 +1,9 @@
-/*
- * Definitions.h
- *
- *  Created on: Oct 1, 2017
- *      Author: AntonioMontana
- */
-
 #ifndef DEFINITIONS_H_
 #define DEFINITIONS_H_
 
-#define SUIT_NUMBER 4
-#define CARDS_PER_SUIT 13
-#define PILES_NUMBER 7
-#define GAME_MODE 3
+#define SUIT_NUMBER_MAX 4
+#define CARDS_PER_SUIT_MAX 13
+#define TABLEAUS_NUMBER_MAX 7
+#define STOCK_VISIBLE_CARDS_MAX 3
 
 #endif /* DEFINITIONS_H_ */

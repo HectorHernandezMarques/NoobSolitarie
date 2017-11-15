@@ -8,24 +8,15 @@
 #ifndef NOOBSOLITARIE_H_
 #define NOOBSOLITARIE_H_
 
-#include <iostream>
-#include "Utils/IO.h"
-#include "Models/Board.h"
-#include "Controllers/StartController.h"
-#include "Controllers/FlipController.h"
-#include "Controllers/MoveController.h"
-#include "Definitions.h"
+#include "Controllers/Logic.h"
+#include "Views/OperationControllerView.h"
 
 class NoobSolitarie {
 private:
-	Utils::IO IO;
-	Models::Board board;
-	Controllers::StartController startController;
-	Controllers::FlipController flipController;
-	Controllers::MoveController moveController;
-
+	Controllers::Logic &logic;
+	Views::OperationControllerView &operationControllerView;
 public:
-	NoobSolitarie();
+	NoobSolitarie(Controllers::Logic &logic, Views::OperationControllerView &operationControllerView);
 	virtual ~NoobSolitarie();
 
 	void run();

@@ -1,13 +1,8 @@
-/*
- * IO.cpp
- *
- *  Created on: Oct 10, 2017
- *      Author: AntonioMontana
- */
-
 #include "IO.h"
 
 namespace Utils {
+
+IO *IO::io = new IO();
 
 IO::IO() {
 
@@ -18,8 +13,9 @@ IO::~IO() {
 }
 
 int IO::readInt(std::string title) {
-	this->writeln(title);
+	assert(&title);
 
+	this->writeln(title);
 	int input;
 	while (!(std::cin >> input)) {
 		std::cin.clear();
@@ -30,8 +26,9 @@ int IO::readInt(std::string title) {
 }
 
 std::string IO::readString(std::string title) {
-	this->writeln(title);
+	assert(&title);
 
+	this->writeln(title);
 	std::string input;
 	while (!(std::cin >> input)) {
 		std::cin.clear();
@@ -42,11 +39,19 @@ std::string IO::readString(std::string title) {
 }
 
 void IO::write(std::string text) {
+	assert(&text);
+
 	std::cout << text;
 }
 
 void IO::writeln(std::string text) {
+	assert(&text);
+
 	std::cout << text << "\n";
+}
+
+IO& IO::getInstance() {
+	return *IO::io;
 }
 
 } /* namespace Utils */

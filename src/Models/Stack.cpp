@@ -46,6 +46,13 @@ Cards::Card& Stack::getLastCard() {
 	return this->getCard(this->getCardsNumber() - 1);
 }
 
+Utils::Stack<Cards::Card>& Stack::getUntilEnd(int index){
+	assert(this->stack.getItemsNumber());
+	assert(index < this->stack.getItemsNumber());
+
+	return this->stack.getUntilEnd(index);
+}
+
 int Stack::getCardsNumber() {
 	return this->stack.getItemsNumber();
 }

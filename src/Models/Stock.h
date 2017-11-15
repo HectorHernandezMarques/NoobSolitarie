@@ -21,10 +21,13 @@ public:
 	bool canFlip();
 	void flip();
 	bool canRemove(Cards::Card &card);
+	bool canRemoveRelativeCards();
 
-	Cards::Card& getRelativeCard();
-	int getVisibleCardsNumber();
+	Utils::Stack<Cards::Card>& getRelativeCards();
+	Utils::Stack<Cards::Card>& getVisibleCards();
+	int getVisibleCardsMax();
 	int getHiddenCardsNumber();
+	int getVisibleCardsNumber();
 	void setHiddenCardsNumber(int hiddenCardsNumber);
 };
 

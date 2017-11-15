@@ -1,10 +1,3 @@
-/*
- * Stack.h
- *
- *  Created on: Oct 1, 2017
- *      Author: AntonioMontana
- */
-
 #ifndef UTILS_STACK_H_
 #define UITLS_STACK_H_
 
@@ -34,6 +27,7 @@ public:
 	T& get(unsigned int index);
 	T& getLast();
 	int getIndex(T &item);
+	Stack<T>& getUntilEnd(unsigned int index);
 	int getItemsNumber();
 };
 
@@ -77,10 +71,10 @@ template<class T> Stack<T>& Stack<T>::remove(unsigned int index) {
 
 	auto it = this->list.begin();
 	std::advance(it, index);
-	std::list<T> tempList(it, it);
+	std::list<T> tempList;
+	tempList.insert(tempList.end(), *it);
 	this->list.erase(it);
-	Stack<T> result(tempList);
-	return result;
+	return *new Stack<T>(tempList);
 }
 
 template<class T> Stack<T>& Stack<T>::removeUntilEnd(unsigned int index) {
@@ -91,8 +85,7 @@ template<class T> Stack<T>& Stack<T>::removeUntilEnd(unsigned int index) {
 	std::advance(it, index);
 	std::list<T> tempList(it, this->list.end());
 	this->list.erase(it, this->list.end());
-	Stack<T> result(tempList);
-	return result;
+	return *new Stack<T>(tempList);
 }
 
 template<class T> T& Stack<T>::get(unsigned int index) {
@@ -122,6 +115,16 @@ template<class T> int Stack<T>::getIndex(T &item) {
 	}
 	assert(it != this->list.end());
 	return i;
+}
+
+template<class T> Stack<T>& Stack<T>::getUntilEnd(unsigned int index) {
+	assert(this->list.size());
+	assert(0 <= index && index < this->list.size());
+
+	auto it = this->list.begin();
+	std::advance(it, index);
+	std::list<T> tempList(it, this->list.end());
+	return *new Stack<T>(tempList);
 }
 
 template<class T> int Stack<T>::getItemsNumber() {

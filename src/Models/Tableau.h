@@ -17,12 +17,15 @@ public:
 	Tableau(Utils::Stack<Cards::Card> &card);
 	virtual ~Tableau();
 
-	bool canAdd(Cards::Card &card);
+	bool canAdd(Utils::Stack<Cards::Card> &cards);
 	bool canRemove(Cards::Card &card);
+	bool canRemoveRelativeCards(int relativeIndex);
 
-	Cards::Card& getRelativeCard(int relativeIndex);
-	int getHiddenCardsNumber();
 	void setHiddenCardsNumber(int hiddenCardsNumber);
+	Utils::Stack<Cards::Card>& getRelativeCards(int relativeIndex);
+	Utils::Stack<Cards::Card>& getVisibleCards();
+	int getHiddenCardsNumber();
+	int getVisibleCardsNumber();
 };
 
 } /* namespace Models */

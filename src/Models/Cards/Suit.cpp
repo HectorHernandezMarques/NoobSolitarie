@@ -24,5 +24,9 @@ bool Suit::operator==(Suit &suit) {
 	return this->suit == suit.suit;
 }
 
+int Suit::getSuit() {
+	return this->suit;
+}
+
 } /* namespace Cards */
 } /* namespace Models */

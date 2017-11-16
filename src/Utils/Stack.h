@@ -62,13 +62,12 @@ template<class T> void Stack<T>::add(T &item) {
 template<class T> void Stack<T>::add(Stack<T> &items) {
 	assert(&items);
 
-	this->list.splice(list.end(), items.list);
+	this->list.insert(list.end(), items.list.begin(), items.list.end());
 }
 
 template<class T> Stack<T>& Stack<T>::remove(unsigned int index) {
 	assert(this->list.size());
 	assert(0 <= index && index < this->list.size());
-
 	auto it = this->list.begin();
 	std::advance(it, index);
 	std::list<T> tempList;

@@ -3,6 +3,13 @@
 
 #include "../../Controllers/MoveController.h"
 #include "LimitedIntDialogView.h"
+#include "BoardView.h"
+#include "CardChoiceView.h"
+#include "TakeCardFromFoundationView.h"
+#include "TakeCardFromTableauView.h"
+#include "TakeCardFromStockView.h"
+#include "PutCardInFoundationView.h"
+#include "PutCardInTableauView.h"
 
 namespace Views {
 namespace Console {

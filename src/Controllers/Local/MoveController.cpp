@@ -17,48 +17,24 @@ void MoveController::accept(ActionControllerVisitor &actionControllerVisitor) {
 	actionControllerVisitor.visit(*this);
 }
 
-Controllers::Error MoveController::canTakeCardFromFoundation(int foundationIndex) {
-	Controllers::Error result = Controllers::Error::CANT_TAKE_CARD;
-	if (this->getFoundation(foundationIndex).canRemoveRelativeCards()) {
-		result = Controllers::Error::NO_ERROR;
-	}
-	return result;
+Controllers::TakeCardFromFoundationController& MoveController::getTakeCardFromFoundationController(){
+	return *new Controllers::Local::TakeCardFromFoundationController(this->game);
 }
 
-Controllers::Error MoveController::canTakeCardFromTableau(int tableauIndex, int relativeCardIndex) {
-	Controllers::Error result = Controllers::Error::CANT_TAKE_CARD;
-	if (this->getTableau(tableauIndex).canRemoveRelativeCards(relativeCardIndex)) {
-		result = Controllers::Error::NO_ERROR;
-	}
-	return result;
+Controllers::TakeCardFromTableauController& MoveController::getTakeCardFromTableauController(){
+	return *new Controllers::Local::TakeCardFromTableauController(this->game);
 }
 
-Controllers::Error MoveController::canTakeCardFromStock() {
-	Controllers::Error result = Controllers::Error::CANT_TAKE_CARD;
-	if (this->getStock().canRemoveRelativeCards()) {
-		result = Controllers::Error::NO_ERROR;
-	}
-	return result;
+Controllers::TakeCardFromStockController& MoveController::getTakeCardFromStockController(){
+	return *new Controllers::Local::TakeCardFromStockController(this->game);
 }
 
-Controllers::Error MoveController::canPutCard(Models::StackAddable &stackAddable, Utils::Stack<Models::Cards::Card> &cards) {
-	Controllers::Error result = Controllers::Error::CANT_PUT_CARD;
-	if (stackAddable.canAdd(cards)) {
-		result = Controllers::Error::NO_ERROR;
-	}
-	return result;
+Controllers::PutCardController& MoveController::getPutCardInFoundationController(CardChoice& cardChoice){
+	return *new Controllers::Local::PutCardInFoundationController(this->game, cardChoice);
 }
 
-Controllers::Error MoveController::selectCardsToTake() {
-	return Controllers::Error::NO_ERROR;
-}
-
-Controllers::Error MoveController::selectCardsToPut() {
-	return Controllers::Error::NO_ERROR;
-}
-
-int MoveController::getVisibleCardsNumberFromTableau(int index) {
-	return this->game.getVisibleCardsNumberFromTableau(index);
+Controllers::PutCardController& MoveController::getPutCardInTableauController(CardChoice &cardChoice){
+	return *new Controllers::Local::PutCardInTableauController(this->game, cardChoice);
 }
 
 } /* namespace Local */

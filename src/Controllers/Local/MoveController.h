@@ -3,6 +3,11 @@
 
 #include "../MoveController.h"
 #include "ActionController.h"
+#include "TakeCardFromFoundationController.h"
+#include "TakeCardFromTableauController.h"
+#include "TakeCardFromStockController.h"
+#include "PutCardInFoundationController.h"
+#include "PutCardInTableauController.h"
 
 namespace Controllers {
 namespace Local {
@@ -14,14 +19,12 @@ public:
 
 	void accept(ActionControllerVisitor &actionControllerVisitor);
 
-	Controllers::Error canTakeCardFromFoundation(int foundationIndex);
-	Controllers::Error canTakeCardFromTableau(int tableauIndex, int relativeCardIndex);
-	Controllers::Error canTakeCardFromStock();
-	Controllers::Error canPutCard(Models::StackAddable &stackAddable, Utils::Stack<Models::Cards::Card> &cards);
-	Controllers::Error selectCardsToTake();
-	Controllers::Error selectCardsToPut();
+	Controllers::TakeCardFromFoundationController& getTakeCardFromFoundationController();
+	Controllers::TakeCardFromTableauController& getTakeCardFromTableauController();
+	Controllers::TakeCardFromStockController& getTakeCardFromStockController();
 
-	int getVisibleCardsNumberFromTableau(int index);
+	Controllers::PutCardController& getPutCardInFoundationController(CardChoice &cardChoice);
+	Controllers::PutCardController& getPutCardInTableauController(CardChoice &cardChoice);
 };
 
 } /* namespace Local */

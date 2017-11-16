@@ -24,7 +24,7 @@ Stock::~Stock() {
 Utils::Stack<Cards::Card>& Stock::remove(int index) {
 	assert(0 <= index && index < this->getCardsNumber());
 
-	if ((this->getCardsNumber() - this->getHiddenCardsNumber()) > 1 && this->visibleCardsNumber > 1) {
+	if ((this->getCardsNumber() - this->getHiddenCardsNumber()) > 1) {
 		if(this->visibleCardsNumber > 1){
 			this->visibleCardsNumber--;
 		}

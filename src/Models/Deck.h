@@ -2,7 +2,8 @@
 #define CARDS_DECK_H_
 
 #include <time.h>
-#include "Cards/Card.h"
+#include <cstdlib>
+#include "./Cards/Card.h"
 
 namespace Models{
 

@@ -1,4 +1,4 @@
-#include "Deck.h"
+#include "./Deck.h"
 
 namespace Models{
 
@@ -25,7 +25,7 @@ Deck::Deck(int suitNumberMax, int cardsPerSuitMax) {
 Cards::Card& Deck::getRandomCard() {
 	assert(this->isThereCardsToGive());
 
-	int nextCard = rand() % (this->suitNumberMax * this->cardsPerSuitMax);
+	int nextCard = std::rand() % (this->suitNumberMax * this->cardsPerSuitMax);
 	while (this->servedCards[nextCard]) {
 		nextCard = (nextCard + 1) % (this->suitNumberMax * this->cardsPerSuitMax);
 	}

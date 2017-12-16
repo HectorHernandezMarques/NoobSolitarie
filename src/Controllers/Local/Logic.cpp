@@ -1,10 +1,9 @@
-#include "Logic.h"
+#include "./Logic.h"
 
 namespace Controllers {
 namespace Local {
 
-Logic::Logic() :
-		Controllers::Logic() {
+Logic::Logic() : game() {
 }
 
 Logic::~Logic() {

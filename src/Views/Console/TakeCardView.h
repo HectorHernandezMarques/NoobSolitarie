@@ -8,10 +8,8 @@ namespace Views {
 namespace Console {
 
 class TakeCardView {
-private:
-	int NAPA;
 public:
-	//virtual Controllers::CardChoice& interact(Controllers::TakeCardController &takeCardController) = 0;
+	virtual Controllers::CardChoice& interact(Controllers::TakeCardController &takeCardController) = 0;
 };
 
 } /* namespace Console */

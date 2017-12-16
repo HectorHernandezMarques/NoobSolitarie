@@ -5,8 +5,7 @@
 #include "TakeCardFromFoundationController.h"
 #include "TakeCardFromTableauController.h"
 #include "TakeCardFromStockController.h"
-#include "PutCardInFoundationController.h"
-#include "PutCardInTableauController.h"
+#include "PutCardController.h"
 
 
 namespace Controllers {

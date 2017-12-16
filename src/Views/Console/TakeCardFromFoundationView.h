@@ -13,7 +13,6 @@ public:
 	virtual ~TakeCardFromFoundationView();
 
 	Controllers::CardChoice& interact(Controllers::TakeCardFromFoundationController &takeCardFromFoundationController);
-	Controllers::Error checkChoice(int foundationIndex);
 };
 
 } /* namespace Console */

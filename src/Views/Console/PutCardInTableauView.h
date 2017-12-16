@@ -2,7 +2,7 @@
 #define VIEWS_CONSOLE_PUTCARDINTABLEAUVIEW_H_
 
 #include "PutCardView.h"
-#include "../../Controllers/PutCardInTableauController.h"
+#include "../../Controllers/PutCardController.h"
 
 namespace Views {
 namespace Console {

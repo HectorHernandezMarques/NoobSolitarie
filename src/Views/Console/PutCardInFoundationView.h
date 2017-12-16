@@ -2,7 +2,7 @@
 #define VIEWS_CONSOLE_PUTCARDINFOUNDATIONVIEW_H_
 
 #include "PutCardView.h"
-#include "../../Controllers/PutCardInFoundationController.h"
+#include "../../Controllers/PutCardController.h"
 
 namespace Views {
 namespace Console {

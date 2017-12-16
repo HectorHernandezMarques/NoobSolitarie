@@ -3,9 +3,5 @@
 
 !/src/
 
-!/.settings/
-
-!/.cproject
-!/.project
 !/.gitignore
 !/README.md

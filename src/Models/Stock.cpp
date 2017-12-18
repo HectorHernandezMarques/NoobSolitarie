@@ -61,7 +61,7 @@ bool Stock::canRemove(Cards::Card &card) {
 
 bool Stock::canRemoveRelativeCards() {
 	bool result = false;
-	if(this->getCardsNumber()){
+	if(this->getVisibleCardsNumber()){
 		result = this->canRemove(this->getRelativeCards().get(0));
 	}
 	return result;
@@ -96,10 +96,21 @@ int Stock::getVisibleCardsNumber() {
 	return this->visibleCardsNumber;
 }
 
+Memento::StockMemento Stock::createMemento() {
+	return Memento::StockMemento(this->visibleCardsMax,this->hiddenCardsNumber, this->visibleCardsNumber, this->stack);
+}
+
 void Stock::setHiddenCardsNumber(int hiddenCardsNumber) {
 	assert(0 <= hiddenCardsNumber && hiddenCardsNumber <= this->getCardsNumber());
 
 	this->hiddenCardsNumber = hiddenCardsNumber;
+}
+
+void Stock::setMemento(Memento::StockMemento &stockMemento) {
+	this->visibleCardsMax = stockMemento.getVisibleCardsMax();
+	this->hiddenCardsNumber = stockMemento.getHiddenCardsNumber();
+	this->visibleCardsNumber = stockMemento.getVisibleCardsNumber();
+	this->stack = stockMemento.getCards();
 }
 
 } /* namespace Models */

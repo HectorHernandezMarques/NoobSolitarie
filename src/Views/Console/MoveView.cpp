@@ -47,6 +47,7 @@ void MoveView::interact(Controllers::MoveController &moveController) {
 			(new PutCardInTableauView())->interact(moveController.getPutCardInTableauController(*cardChoice));
 			break;
 		}
+		moveController.execute();
 	}
 	moveController.setState(Models::State::IN_GAME);
 }

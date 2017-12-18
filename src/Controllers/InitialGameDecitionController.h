@@ -8,7 +8,7 @@ namespace Controllers {
 
 class InitialGameDecitionController : public virtual OperationController{
 public:
-	virtual void makeDecition(InitialGameDecition initialGameDecition) = 0;
+	virtual void setInitialGameDecition(InitialGameDecition initialGameDecition) = 0;
 };
 
 } /* namespace Controllers */

@@ -13,7 +13,7 @@ public:
 	virtual ~StartController();
 
 	void accept(OperationControllerVisitor &operationControllerVisitor);
-	void start();
+	Controllers::Error execute();
 };
 
 } /* namespace Local */

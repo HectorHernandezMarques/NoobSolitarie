@@ -18,8 +18,8 @@ public:
 	PutCardController(Models::Game &game, Controllers::CardChoice& cardChoice);
 	virtual ~PutCardController();
 
-	Error setTargetChoice(int targetStackIndex);
-	void putCard();
+	Controllers::Error execute();
+	void setTargetChoice(int targetStackIndex);
 };
 
 } /* namespace Local */

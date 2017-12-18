@@ -6,6 +6,8 @@
 #include "./FlipController.h"
 #include "./MoveController.h"
 #include "./StartController.h"
+#include "./UndoController.h"
+#include "./RedoController.h"
 
 namespace Controllers {
 namespace Local {

@@ -27,7 +27,7 @@ Controllers::CardChoice& TakeCardFromTableauView::interact(
 		sourceCardLimitedIntDialogView.write();
 		int choosenSourceCardIndex = sourceCardLimitedIntDialogView.read();
 
-		Controllers::Error error = takeCardFromTableauController.checkChoice(choosenSourceTableauIndex, choosenSourceCardIndex);
+		Controllers::Error error = takeCardFromTableauController.setChoice(choosenSourceTableauIndex, choosenSourceCardIndex);
 		if (error == Controllers::Error::NO_ERROR) {
 			result = new Controllers::CardChoice(takeCardFromTableauController.getCardChoice());
 		}

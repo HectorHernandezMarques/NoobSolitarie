@@ -14,8 +14,8 @@ public:
 	virtual ~FlipController();
 
 	void accept(ActionControllerVisitor &actionControllerVisitor);
+	Controllers::Error execute();
 
-	Controllers::Error flip();
 };
 
 } /* namespace Local */

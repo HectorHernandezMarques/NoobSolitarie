@@ -1,8 +1,8 @@
 #ifndef TABLEAU_H_
 #define TABLEAU_H_
 
-#include <string>
-#include "StackAddable.h"
+#include "./StackAddable.h"
+#include "./Memento/TableauMemento.h"
 
 namespace Models{
 
@@ -26,6 +26,9 @@ public:
 	Utils::Stack<Cards::Card>& getVisibleCards();
 	int getHiddenCardsNumber();
 	int getVisibleCardsNumber();
+	Memento::TableauMemento createMemento();
+	void setMemento(Memento::TableauMemento &tableauMemento);
+
 };
 
 } /* namespace Models */

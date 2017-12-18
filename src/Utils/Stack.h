@@ -1,5 +1,5 @@
 #ifndef UTILS_STACK_H_
-#define UITLS_STACK_H_
+#define UTILS_STACK_H_
 
 #include <cassert>
 #include <list>
@@ -16,7 +16,7 @@ protected:
 public:
 	Stack();
 	Stack(T &item);
-	Stack(Stack<T> &item);
+	Stack(const Stack<T> &item);
 	Stack(std::list<T> &item);
 	virtual ~Stack();
 
@@ -40,7 +40,7 @@ template<class T> Stack<T>::Stack(T &item) :
 	assert(&item);
 }
 
-template<class T> Stack<T>::Stack(Stack<T> &items) :
+template<class T> Stack<T>::Stack(const Stack<T> &items) :
 		list(items.list) {
 	assert(&items);
 }
@@ -132,4 +132,4 @@ template<class T> int Stack<T>::getItemsNumber() {
 
 } /* namespace Utils */
 
-#endif /* STACK_H_ */
+#endif /* UTILS_STACK_H_ */

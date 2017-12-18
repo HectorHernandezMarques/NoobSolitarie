@@ -11,8 +11,7 @@ private:
 	virtual Models::StackAddable& getStackAddable(int targetStackIndex) = 0;
 
 public:
-	virtual void putCard() = 0;
-	virtual Error setTargetChoice(int targetStackIndex) = 0;
+	virtual void setTargetChoice(int targetStackIndex) = 0;
 };
 
 } /* namespace Controller */

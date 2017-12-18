@@ -13,7 +13,7 @@ public:
 	TakeCardFromStockController(Models::Game &game);
 	virtual ~TakeCardFromStockController();
 
-	Error checkChoice();
+	Controllers::Error setChoice();
 };
 
 } /* namespace Local */

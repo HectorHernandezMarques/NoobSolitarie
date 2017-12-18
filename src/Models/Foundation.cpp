@@ -65,4 +65,12 @@ int Foundation::getVisibleCardsNumber() {
 	return this->getCardsNumber()?1:0;
 }
 
+Memento::FoundationMemento Foundation::createMemento() {
+	return Memento::FoundationMemento(this->stack);
+}
+
+void Foundation::setMemento(Memento::FoundationMemento &foundationMemento) {
+	this->stack = foundationMemento.getCards();
+}
+
 } /* namespace Models */

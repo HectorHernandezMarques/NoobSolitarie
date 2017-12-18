@@ -6,8 +6,6 @@
 namespace Controllers {
 
 class StartController : public virtual OperationController{
-public:
-	virtual void start() = 0;
 };
 
 } /* namespace Controller */

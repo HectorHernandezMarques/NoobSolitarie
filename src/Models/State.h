@@ -2,7 +2,7 @@
 #define MODELS_STATE_H_
 
 namespace Models {
-enum class State {INITIAL, IN_GAME, FLIPPING_CARDS, MOVING_CARDS, FINAL, EXIT};
+	enum class State { INITIAL, IN_GAME, FLIPPING_CARDS, MOVING_CARDS, UNDOING, REDOING , FINAL, EXIT };
 
 } /* namespace Models */
 

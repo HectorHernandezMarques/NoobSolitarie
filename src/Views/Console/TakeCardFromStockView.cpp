@@ -13,12 +13,10 @@ Controllers::CardChoice& TakeCardFromStockView::interact(Controllers::TakeCardFr
 	assert(&takeCardFromStockController);
 
 	Controllers::CardChoice *result = nullptr;
-
-	Controllers::Error error = takeCardFromStockController.checkChoice();
+	Controllers::Error error = takeCardFromStockController.setChoice();
 	if (error == Controllers::Error::NO_ERROR) {
 		result = new Controllers::CardChoice(takeCardFromStockController.getCardChoice());
 	}
-
 	return *result;
 }
 

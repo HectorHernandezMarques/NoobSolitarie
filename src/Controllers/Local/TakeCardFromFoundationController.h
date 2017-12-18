@@ -9,11 +9,13 @@ namespace Local {
 
 class TakeCardFromFoundationController: public virtual Controllers::TakeCardFromFoundationController,
 		public Controllers::Local::TakeCardController {
+private:
+
 public:
 	TakeCardFromFoundationController(Models::Game &game);
 	virtual ~TakeCardFromFoundationController();
 
-	Error checkChoice(int sourceFoundationIndex);
+	Controllers::Error setChoice(int sourceFoundationIndex);
 };
 
 } /* namespace Local */

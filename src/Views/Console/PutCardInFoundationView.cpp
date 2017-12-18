@@ -17,10 +17,7 @@ void PutCardInFoundationView::interact(Controllers::PutCardController &putCardIn
 					putCardInFoundationController.getSuitNumberMax())));
 	targetFoundationLimitedIntDialogView.write();
 	int choosenTargetTableauIndex = targetFoundationLimitedIntDialogView.read() - 1;
-	Controllers::Error error = putCardInFoundationController.setTargetChoice(choosenTargetTableauIndex);
-	if (error == Controllers::Error::NO_ERROR) {
-		putCardInFoundationController.putCard();
-	}
+	putCardInFoundationController.setTargetChoice(choosenTargetTableauIndex);
 }
 
 } /* namespace Console */

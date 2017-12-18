@@ -8,12 +8,16 @@ namespace Controllers {
 namespace Local {
 
 class InitialGameDecitionController: public virtual Controllers::InitialGameDecitionController, public Controllers::Local::OperationController {
+private:
+	InitialGameDecition initialGameDecition;
 public:
 	InitialGameDecitionController(Models::Game &game);
 	virtual ~InitialGameDecitionController();
 
 	void accept(OperationControllerVisitor &operationControllerVisitor);
-	void makeDecition(InitialGameDecition initialGameDecition);
+	Controllers::Error execute();
+
+	void setInitialGameDecition(InitialGameDecition initialGameDecition);
 };
 
 } /* namespace Local */

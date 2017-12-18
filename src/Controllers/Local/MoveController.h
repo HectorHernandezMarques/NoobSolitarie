@@ -13,11 +13,16 @@ namespace Controllers {
 namespace Local {
 
 class MoveController: public virtual Controllers::MoveController, public Controllers::Local::ActionController {
+private:
+	TakeCardController *takeCardController;
+	PutCardController *putCardController;
+
 public:
 	MoveController(Models::Game &game);
 	virtual ~MoveController();
 
 	void accept(ActionControllerVisitor &actionControllerVisitor);
+	Controllers::Error execute();
 
 	Controllers::TakeCardFromFoundationController& getTakeCardFromFoundationController();
 	Controllers::TakeCardFromTableauController& getTakeCardFromTableauController();

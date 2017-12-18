@@ -9,6 +9,7 @@ namespace Controllers {
 
 class TakeCardController : public virtual Controller{
 public:
+
 	virtual CardChoice& getCardChoice() = 0;
 };
 

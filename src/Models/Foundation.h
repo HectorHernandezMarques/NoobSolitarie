@@ -2,6 +2,7 @@
 #define FOUNDATION_H_
 
 #include "StackAddable.h"
+#include "./Memento/FoundationMemento.h"
 
 namespace Models{
 
@@ -20,6 +21,8 @@ public:
 	Utils::Stack<Cards::Card>& getRelativeCards();
 	Utils::Stack<Cards::Card>& getVisibleCards();
 	int getVisibleCardsNumber();
+	Memento::FoundationMemento createMemento();
+	void setMemento(Memento::FoundationMemento &foundationMemento);
 
 };
 

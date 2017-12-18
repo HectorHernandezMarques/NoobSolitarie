@@ -17,6 +17,28 @@ void Game::flip() {
 	return this->board.flip();
 }
 
+void Game::takeMemento() {
+	this->boardMementos.addMemento(this->board.createMemento());
+}
+
+bool Game::canUndo() {
+	return this->boardMementos.hasPreviousMemento();
+}
+
+bool Game::canRedo() {
+	return this->boardMementos.hasNextMemento();
+}
+
+void Game::undo() {
+	this->board.setMemento(this->boardMementos.getPreviousMemento());
+	this->boardMementos.setPreviousMemento();
+}
+
+void Game::redo() {
+	this->board.setMemento(this->boardMementos.getNextMemento());
+	this->boardMementos.setNextMemento();
+}
+
 void Game::setState(State state) {
 	assert(&state);
 

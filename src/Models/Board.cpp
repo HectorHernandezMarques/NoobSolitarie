@@ -1,4 +1,5 @@
 #include "Board.h"
+#include <iostream>
 
 namespace Models {
 
@@ -72,6 +73,36 @@ Stock& Board::getStock() {
 
 int Board::getVisibleCardsNumberFromTableau(int index) {
 	return this->tableau[index].getVisibleCardsNumber();
+}
+
+Memento::BoardMemento& Board::createMemento() {
+	Memento::BoardMemento &result = *new Memento::BoardMemento(this->suitNumberMax, this->cardsPerSuitMax, this->tableausNumberMax, this->stock.createMemento());
+
+	for (int i = 0; i < this->tableausNumberMax; i++) {
+		result.addTableauMemento(this->tableau[i].createMemento());
+	}
+	for (int i = 0; i < this->suitNumberMax; i++) {
+		result.addFoundationMemento(this->foundation[i].createMemento());
+	}
+
+	return result;
+}
+
+void Board::setMemento(Memento::BoardMemento &boardMemento) {
+	this->suitNumberMax = boardMemento.getSuitNumberMax();
+	this->cardsPerSuitMax = boardMemento.getCardsPerSuitMax();
+	this->tableausNumberMax = boardMemento.getTableausNumberMax();
+
+	int i = 0;
+	for (auto it = boardMemento.getTableauMementosBegin(); it != boardMemento.getTableauMementosEnd(); ++it) {
+		this->tableau[i++].setMemento(*it);
+	}
+
+	i = 0;
+	for (auto it = boardMemento.getFoundationMementosBegin(); it != boardMemento.getFoundationMementosEnd(); ++it) {
+		this->foundation[i++].setMemento(*it);
+	}
+	this->stock.setMemento(boardMemento.getStockMemento());
 }
 
 } /* namespace Models */

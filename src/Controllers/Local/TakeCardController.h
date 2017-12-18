@@ -15,6 +15,8 @@ public:
 	TakeCardController(Models::Game &game);
 	virtual ~TakeCardController();
 
+	Controllers::Error execute();
+
 	CardChoice& getCardChoice();
 };
 

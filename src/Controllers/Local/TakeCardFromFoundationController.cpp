@@ -11,7 +11,7 @@ TakeCardFromFoundationController::TakeCardFromFoundationController(Models::Game 
 TakeCardFromFoundationController::~TakeCardFromFoundationController() {
 }
 
-Error TakeCardFromFoundationController::checkChoice(int sourceFoundationIndex) {
+Controllers::Error TakeCardFromFoundationController::setChoice(int sourceFoundationIndex) {
 	assert(0 <= sourceFoundationIndex && sourceFoundationIndex < this->getSuitNumberMax());
 
 	Controllers::Error result = Controllers::Error::CANT_TAKE_CARD;

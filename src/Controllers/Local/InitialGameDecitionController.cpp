@@ -17,17 +17,31 @@ void InitialGameDecitionController::accept(OperationControllerVisitor &operation
 	operationControllerVisitor.visit(*this);
 }
 
-void InitialGameDecitionController::makeDecition(InitialGameDecition initialGameDecition) {
-	switch (initialGameDecition) {
+Controllers::Error InitialGameDecitionController::execute() {
+	assert(&this->initialGameDecition);
+
+	Controllers::Error result = Controllers::Error::NO_ERROR;
+	switch (this->initialGameDecition) {
 	case InitialGameDecition::FLIP_CARDS:
 		this->setState(Models::State::FLIPPING_CARDS);
 		break;
 	case InitialGameDecition::MOVE_CARDS:
 		this->setState(Models::State::MOVING_CARDS);
 		break;
+	case InitialGameDecition::REDO:
+		this->setState(Models::State::REDOING);
+		break;
+	case InitialGameDecition::UNDO:
+		this->setState(Models::State::UNDOING);
+		break;
 	default:
-		assert(false);
+		result = Controllers::Error::COMMAND_NOT_AVAILABLE;
 	}
+	return result;
+}
+
+void InitialGameDecitionController::setInitialGameDecition(InitialGameDecition initialGameDecition) {
+	this->initialGameDecition = initialGameDecition;
 }
 
 } /* namespace Local */

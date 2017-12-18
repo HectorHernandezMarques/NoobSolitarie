@@ -19,7 +19,7 @@ Controllers::CardChoice& TakeCardFromFoundationView::interact(
 					takeCardFromFoundationController.getSuitNumberMax())));
 	limitedIntDialogView.write();
 	int choosenSouceFoundationIndex = limitedIntDialogView.read() - 1;
-	Controllers::Error error = takeCardFromFoundationController.checkChoice(choosenSouceFoundationIndex);
+	Controllers::Error error = takeCardFromFoundationController.setChoice(choosenSouceFoundationIndex);
 	if (error == Controllers::Error::NO_ERROR) {
 		result = new Controllers::CardChoice(takeCardFromFoundationController.getCardChoice());
 	}

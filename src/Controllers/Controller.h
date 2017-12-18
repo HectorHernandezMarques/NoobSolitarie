@@ -8,6 +8,8 @@ namespace Controllers {
 
 class Controller{
 public:
+	virtual Controllers::Error execute() = 0;
+
 	virtual Models::State getState() = 0;
 	virtual Models::Board& getBoard() = 0;
 	virtual void setState(Models::State state) = 0;

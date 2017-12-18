@@ -1,10 +1,11 @@
 #ifndef BOARD_H_
 #define BOARD_H_
 
-#include "Deck.h"
-#include "Tableau.h"
-#include "Foundation.h"
-#include "Stock.h"
+#include "./Deck.h"
+#include "./Tableau.h"
+#include "./Foundation.h"
+#include "./Stock.h"
+#include "./Memento/BoardMemento.h"
 
 namespace Models {
 
@@ -34,6 +35,9 @@ public:
 	Foundation& getFoundation(int index);
 	Stock& getStock();
 	int getVisibleCardsNumberFromTableau(int index);
+	Memento::BoardMemento& createMemento();
+	void setMemento(Memento::BoardMemento &boardMemento);
+	
 };
 
 } /* namespace Models */

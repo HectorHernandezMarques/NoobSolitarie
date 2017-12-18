@@ -15,10 +15,7 @@ void PutCardInTableauView::interact(Controllers::PutCardController &putCardInTab
 					putCardInTableauController.getTableausNumberMax())));
 	targetTableauLimitedIntDialogView.write();
 	int choosenTargetTableauIndex = targetTableauLimitedIntDialogView.read() - 1;
-	Controllers::Error error = putCardInTableauController.setTargetChoice(choosenTargetTableauIndex);
-	if (error == Controllers::Error::NO_ERROR) {
-		putCardInTableauController.putCard();
-	}
+	putCardInTableauController.setTargetChoice(choosenTargetTableauIndex);
 }
 
 } /* namespace Console */

@@ -13,7 +13,7 @@ public:
 	TakeCardFromTableauController(Models::Game &game);
 	virtual ~TakeCardFromTableauController();
 
-	Error checkChoice(int sourceTableauIndex, int relativeSourceCardIndex);
+	Controllers::Error setChoice(int sourceTableauIndex, int relativeSourceCardIndex);
 	int getVisibleCardsNumberFromTableau(int index);
 };
 

@@ -7,7 +7,7 @@ namespace Controllers {
 
 class TakeCardFromTableauController : public virtual TakeCardController{
 public:
-	virtual Error checkChoice(int sourceTableauIndex, int relativeSourceCardIndex) = 0;
+	virtual Error setChoice(int sourceTableauIndex, int relativeSourceCardIndex) = 0;
 	virtual int getVisibleCardsNumberFromTableau(int index) = 0;
 };
 

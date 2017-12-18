@@ -17,12 +17,12 @@ void FlipController::accept(ActionControllerVisitor &actionControllerVisitor) {
 	actionControllerVisitor.visit(*this);
 }
 
-Controllers::Error FlipController::flip() {
-	Controllers::Error result = Controllers::Error::NO_ERROR;
+Controllers::Error FlipController::execute() {
+	Controllers::Error result = Controllers::Error::CANT_FLIP;
 	if (this->game.canFlip()) {
 		this->game.flip();
-	} else {
-		result = Controllers::Error::CANT_FLIP;
+		this->game.takeMemento();
+		result = Controllers::Error::NO_ERROR;
 	}
 	this->setState(Models::State::IN_GAME);
 	return result;

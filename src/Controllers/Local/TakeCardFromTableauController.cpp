@@ -10,7 +10,7 @@ TakeCardFromTableauController::TakeCardFromTableauController(Models::Game &game)
 TakeCardFromTableauController::~TakeCardFromTableauController() {
 }
 
-Error TakeCardFromTableauController::checkChoice(int sourceTableauIndex, int relativeSourceCardIndex){
+Controllers::Error TakeCardFromTableauController::setChoice(int sourceTableauIndex, int relativeSourceCardIndex){
 	assert(0 <= sourceTableauIndex && sourceTableauIndex < this->getTableausNumberMax());
 
 	Controllers::Error result = Controllers::Error::CANT_TAKE_CARD;

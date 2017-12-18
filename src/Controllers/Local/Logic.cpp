@@ -24,6 +24,12 @@ Controllers::Local::OperationController& Logic::getOperationController() {
 	case Models::State::MOVING_CARDS:
 		result = new Controllers::Local::MoveController(this->game);
 		break;
+	case Models::State::UNDOING:
+		result = new Controllers::Local::UndoController(this->game);
+		break;
+	case Models::State::REDOING:
+		result = new Controllers::Local::RedoController(this->game);
+		break;
 	case Models::State::FINAL:
 		//result = new Controllers::ContinueController(this->game)
 		break;

@@ -17,8 +17,10 @@ void StartController::accept(OperationControllerVisitor &operationControllerVisi
 	operationControllerVisitor.visit(*this);
 }
 
-void StartController::start() {
+Controllers::Error StartController::execute() {
 	this->setState(Models::State::IN_GAME);
+	this->game.takeMemento();
+	return Controllers::Error::NO_ERROR;
 }
 
 } /* namespace Local */

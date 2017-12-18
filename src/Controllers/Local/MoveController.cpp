@@ -17,24 +17,43 @@ void MoveController::accept(ActionControllerVisitor &actionControllerVisitor) {
 	actionControllerVisitor.visit(*this);
 }
 
+Controllers::Error MoveController::execute() {
+	assert(&this->takeCardController);
+	assert(&this->putCardController);
+
+	Controllers::Error result = this->putCardController->execute();
+	if (result == Controllers::Error::NO_ERROR) {
+		this->takeCardController->execute();
+		this->game.takeMemento();
+	}
+	this->setState(Models::State::IN_GAME);
+
+	return result;
+}
+
 Controllers::TakeCardFromFoundationController& MoveController::getTakeCardFromFoundationController(){
-	return *new Controllers::Local::TakeCardFromFoundationController(this->game);
+	this->takeCardController = new Controllers::Local::TakeCardFromFoundationController(this->game);
+	return *(Controllers::Local::TakeCardFromFoundationController*) this->takeCardController;
 }
 
 Controllers::TakeCardFromTableauController& MoveController::getTakeCardFromTableauController(){
-	return *new Controllers::Local::TakeCardFromTableauController(this->game);
+	this->takeCardController = new Controllers::Local::TakeCardFromTableauController(this->game);
+	return *(Controllers::Local::TakeCardFromTableauController*) this->takeCardController;
 }
 
 Controllers::TakeCardFromStockController& MoveController::getTakeCardFromStockController(){
-	return *new Controllers::Local::TakeCardFromStockController(this->game);
+	this->takeCardController = new Controllers::Local::TakeCardFromStockController(this->game);
+	return *(Controllers::Local::TakeCardFromStockController*) this->takeCardController;
 }
 
 Controllers::PutCardController& MoveController::getPutCardInFoundationController(CardChoice& cardChoice){
-	return *new Controllers::Local::PutCardInFoundationController(this->game, cardChoice);
+	this->putCardController = new Controllers::Local::PutCardInFoundationController(this->game, cardChoice);
+	return *this->putCardController;
 }
 
 Controllers::PutCardController& MoveController::getPutCardInTableauController(CardChoice &cardChoice){
-	return *new Controllers::Local::PutCardInTableauController(this->game, cardChoice);
+	this->putCardController = new Controllers::Local::PutCardInTableauController(this->game, cardChoice);
+	return *this->putCardController;
 }
 
 } /* namespace Local */

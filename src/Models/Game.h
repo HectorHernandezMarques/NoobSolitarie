@@ -3,12 +3,14 @@
 
 #include "BoardBuilder.h"
 #include "State.h"
+#include "./Memento/BoardMementoCareTaker.h"
 
 namespace Models {
 
 class Game {
 private:
 	Board board;
+	Memento::BoardMementoCareTaker boardMementos;
 	State state;
 public:
 	Game();
@@ -16,6 +18,11 @@ public:
 
 	bool canFlip();
 	void flip();
+	void takeMemento();
+	bool canUndo();
+	bool canRedo();
+	void undo();
+	void redo();
 
 	void setState(State state);
 	Board& getBoard();
@@ -27,6 +34,7 @@ public:
 	State getState();
 
 	int getVisibleCardsNumberFromTableau(int index);
+
 };
 
 } /* namespace Models */

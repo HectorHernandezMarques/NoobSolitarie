@@ -7,7 +7,7 @@ namespace Controllers {
 
 class TakeCardFromStockController : public virtual TakeCardController{
 public:
-	virtual Error checkChoice() = 0;
+	virtual Error setChoice() = 0;
 };
 
 } /* namespace Controller */

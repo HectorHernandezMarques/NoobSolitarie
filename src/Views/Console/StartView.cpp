@@ -14,7 +14,7 @@ StartView::~StartView() {
 void StartView::interact(Controllers::StartController &startController) {
 	assert(&startController);
 
-	startController.start();
+	startController.execute();
 }
 
 } /* namespace Console */

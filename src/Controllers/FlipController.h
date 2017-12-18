@@ -6,8 +6,6 @@
 namespace Controllers {
 
 class FlipController : public virtual ActionController{
-public:
-	virtual Error flip() = 0;
 };
 
 } /* namespace Controller */

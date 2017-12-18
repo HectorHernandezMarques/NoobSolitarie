@@ -12,20 +12,19 @@ PutCardController::PutCardController(Models::Game &game, Controllers::CardChoice
 PutCardController::~PutCardController() {
 }
 
-Error PutCardController::setTargetChoice(int targetTableauIndex) {
+Controllers::Error PutCardController::execute() {
+	assert(this->targetStackAddable);
+
 	Error error = Error::CANT_PUT_CARD;
-	this->targetStackAddable = &(this->getStackAddable(targetTableauIndex));
 	if (this->cardChoice.canAddInStack(*(this->targetStackAddable))) {
+		this->targetStackAddable->add(this->cardChoice.getCards());
 		error = Error::NO_ERROR;
 	}
 	return error;
 }
 
-void PutCardController::putCard() {
-	assert(this->targetStackAddable);
-
-	this->targetStackAddable->add(this->cardChoice.getCards());
-	this->cardChoice.removeCard();
+void PutCardController::setTargetChoice(int targetTableauIndex) {
+	this->targetStackAddable = &(this->getStackAddable(targetTableauIndex));
 }
 
 } /* namespace Local */

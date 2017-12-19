@@ -2,6 +2,9 @@
 /*/
 
 !/src/
+/src/.settings
+/src/.cproject
+/src/.project
 
 !/.gitignore
 !/README.md

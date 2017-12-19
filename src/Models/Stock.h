@@ -29,7 +29,7 @@ public:
 	int getVisibleCardsMax();
 	int getHiddenCardsNumber();
 	int getVisibleCardsNumber();
-	Memento::StockMemento createMemento();
+	Memento::StockMemento& createMemento();
 	void setHiddenCardsNumber(int hiddenCardsNumber);
 	void setMemento(Memento::StockMemento &stockMemento);
 

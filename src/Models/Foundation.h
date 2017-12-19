@@ -21,7 +21,7 @@ public:
 	Utils::Stack<Cards::Card>& getRelativeCards();
 	Utils::Stack<Cards::Card>& getVisibleCards();
 	int getVisibleCardsNumber();
-	Memento::FoundationMemento createMemento();
+	Memento::FoundationMemento& createMemento();
 	void setMemento(Memento::FoundationMemento &foundationMemento);
 
 };

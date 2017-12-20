@@ -26,7 +26,7 @@ public:
 	Utils::Stack<Cards::Card>& getVisibleCards();
 	int getHiddenCardsNumber();
 	int getVisibleCardsNumber();
-	Memento::TableauMemento createMemento();
+	Memento::TableauMemento& createMemento();
 	void setMemento(Memento::TableauMemento &tableauMemento);
 
 };

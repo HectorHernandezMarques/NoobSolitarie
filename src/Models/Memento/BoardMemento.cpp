@@ -9,8 +9,8 @@ BoardMemento::BoardMemento(int suitNumberMax, int cardsPerSuitMax, int tableausN
 }
 
 BoardMemento::BoardMemento(const BoardMemento &boardMemento) :
-	suitNumberMax(boardMemento.suitNumberMax), cardsPerSuitMax(boardMemento.cardsPerSuitMax), tableausNumberMax(boardMemento.tableausNumberMax), stockMemento(boardMemento.stockMemento),
-	tableauMementos(boardMemento.tableauMementos), foundationMementos(boardMemento.foundationMementos){
+	suitNumberMax(boardMemento.suitNumberMax), cardsPerSuitMax(boardMemento.cardsPerSuitMax), tableausNumberMax(boardMemento.tableausNumberMax),
+	tableauMementos(boardMemento.tableauMementos), foundationMementos(boardMemento.foundationMementos), stockMemento(boardMemento.stockMemento){
 }
 
 BoardMemento::~BoardMemento() {

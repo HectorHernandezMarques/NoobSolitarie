@@ -84,8 +84,8 @@ int Tableau::getVisibleCardsNumber() {
 	return this->getCardsNumber() - this->hiddenCardsNumber;
 }
 
-Memento::TableauMemento Tableau::createMemento() {
-	return Memento::TableauMemento(this->hiddenCardsNumber, this->stack);
+Memento::TableauMemento& Tableau::createMemento() {
+	return *new Memento::TableauMemento(this->hiddenCardsNumber, this->stack);
 }
 
 void Tableau::setMemento(Memento::TableauMemento &tableauMemento) {

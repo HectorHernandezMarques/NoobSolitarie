@@ -96,8 +96,8 @@ int Stock::getVisibleCardsNumber() {
 	return this->visibleCardsNumber;
 }
 
-Memento::StockMemento Stock::createMemento() {
-	return Memento::StockMemento(this->visibleCardsMax,this->hiddenCardsNumber, this->visibleCardsNumber, this->stack);
+Memento::StockMemento& Stock::createMemento() {
+	return *new Memento::StockMemento(this->visibleCardsMax,this->hiddenCardsNumber, this->visibleCardsNumber, this->stack);
 }
 
 void Stock::setHiddenCardsNumber(int hiddenCardsNumber) {

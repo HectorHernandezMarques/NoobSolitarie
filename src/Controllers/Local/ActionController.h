@@ -14,7 +14,6 @@ public:
 	virtual ~ActionController();
 
 	void accept(OperationControllerVisitor &operationControllerVisitor);
-	virtual void accept(ActionControllerVisitor &actionControllerVisitor) = 0;
 
 };
 

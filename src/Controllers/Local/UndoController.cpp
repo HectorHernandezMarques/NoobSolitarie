@@ -17,6 +17,10 @@ void UndoController::accept(ActionControllerVisitor &actionControllerVisitor) {
 	actionControllerVisitor.visit(*this);
 }
 
+bool UndoController::available() {
+	return this->game.canUndo();
+}
+
 Controllers::Error UndoController::execute() {
 	Controllers::Error result = Controllers::Error::CANT_UNDO;
 	if (this->game.canUndo()) {

@@ -25,6 +25,7 @@ public:
 	virtual ~Board();
 
 	bool canFlip();
+	bool isGameOver();
 	void flip();
 
 	int getCardsPerSuitMax();

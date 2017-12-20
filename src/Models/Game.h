@@ -17,10 +17,11 @@ public:
 	virtual ~Game();
 
 	bool canFlip();
-	void flip();
-	void takeMemento();
 	bool canUndo();
 	bool canRedo();
+	bool isGameOver();
+	void takeMemento();
+	void flip();
 	void undo();
 	void redo();
 

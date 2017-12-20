@@ -22,6 +22,7 @@ public:
 	virtual ~MoveController();
 
 	void accept(ActionControllerVisitor &actionControllerVisitor);
+	bool available();
 	Controllers::Error execute();
 
 	Controllers::TakeCardFromFoundationController& getTakeCardFromFoundationController();

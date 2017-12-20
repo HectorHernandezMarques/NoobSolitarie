@@ -10,6 +10,7 @@ class ActionControllerVisitor;
 class ActionController : public virtual OperationController{
 public:
 	virtual void accept(ActionControllerVisitor &actionControllerVisitor) = 0;
+	virtual bool available() = 0;
 };
 
 } /* namespace Controllers */

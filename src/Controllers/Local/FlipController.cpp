@@ -17,6 +17,10 @@ void FlipController::accept(ActionControllerVisitor &actionControllerVisitor) {
 	actionControllerVisitor.visit(*this);
 }
 
+bool FlipController::available() {
+	return this->game.canFlip();
+}
+
 Controllers::Error FlipController::execute() {
 	Controllers::Error result = Controllers::Error::CANT_FLIP;
 	if (this->game.canFlip()) {

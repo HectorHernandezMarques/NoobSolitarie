@@ -35,6 +35,14 @@ bool Board::canFlip(){
 	return this->stock.canFlip();
 }
 
+bool Board::isGameOver() {
+	bool result = true;
+	for (int i = 0; i < this->suitNumberMax; i++) {
+		result = result && (this->foundation[i].getCardsNumber() == this->cardsPerSuitMax);
+	}
+	return result;
+}
+
 void Board::flip(){
 	return this->stock.flip();
 }

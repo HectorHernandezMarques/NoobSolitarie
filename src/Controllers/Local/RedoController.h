@@ -13,6 +13,7 @@ public:
 	virtual ~RedoController();
 
 	void accept(ActionControllerVisitor &actionControllerVisitor);
+	bool available();
 	Controllers::Error execute();
 };
 

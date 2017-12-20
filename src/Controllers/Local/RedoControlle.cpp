@@ -17,6 +17,10 @@ void RedoController::accept(ActionControllerVisitor &actionControllerVisitor) {
 	actionControllerVisitor.visit(*this);
 }
 
+bool RedoController::available() {
+	return this->game.canRedo();
+}
+
 Controllers::Error RedoController::execute() {
 	Controllers::Error result = Controllers::Error::CANT_REDO;
 	if (this->game.canRedo()) {

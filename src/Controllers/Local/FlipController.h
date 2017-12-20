@@ -14,6 +14,7 @@ public:
 	virtual ~FlipController();
 
 	void accept(ActionControllerVisitor &actionControllerVisitor);
+	bool available();
 	Controllers::Error execute();
 
 };

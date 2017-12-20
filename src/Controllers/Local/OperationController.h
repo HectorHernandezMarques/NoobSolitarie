@@ -13,7 +13,6 @@ public:
 	OperationController(Models::Game &game);
 	virtual ~OperationController();
 
-	virtual void accept(OperationControllerVisitor &operationControllerVisitor) = 0;
 };
 
 } /* namespace Local */

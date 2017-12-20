@@ -13,20 +13,24 @@ bool Game::canFlip() {
 	return this->board.canFlip();
 }
 
-void Game::flip() {
-	return this->board.flip();
-}
-
-void Game::takeMemento() {
-	this->boardMementos.addMemento(this->board.createMemento());
-}
-
 bool Game::canUndo() {
 	return this->boardMementos.hasPreviousMemento();
 }
 
 bool Game::canRedo() {
 	return this->boardMementos.hasNextMemento();
+}
+
+bool Game::isGameOver() {
+	return this->board.isGameOver();
+}
+
+void Game::takeMemento() {
+	this->boardMementos.addMemento(this->board.createMemento());
+}
+
+void Game::flip() {
+	return this->board.flip();
 }
 
 void Game::undo() {

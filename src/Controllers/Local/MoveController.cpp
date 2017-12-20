@@ -17,6 +17,10 @@ void MoveController::accept(ActionControllerVisitor &actionControllerVisitor) {
 	actionControllerVisitor.visit(*this);
 }
 
+bool MoveController::available() {
+	return this->game.isGameOver();
+}
+
 Controllers::Error MoveController::execute() {
 	assert(&this->takeCardController);
 	assert(&this->putCardController);

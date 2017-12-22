@@ -4,8 +4,8 @@ namespace Controllers {
 namespace Local {
 
 ActionControllerBuilder::ActionControllerBuilder(Models::Game &game) {
-	this->actionControllers.push_back(new Controllers::Local::FlipController(game));
 	this->actionControllers.push_back(new Controllers::Local::MoveController(game));
+	this->actionControllers.push_back(new Controllers::Local::FlipController(game));
 	this->actionControllers.push_back(new Controllers::Local::UndoController(game));
 	this->actionControllers.push_back(new Controllers::Local::RedoController(game));
 }

@@ -5,6 +5,9 @@ namespace Local {
 
 UndoController::UndoController(Models::Game &game) :
 	Controllers::Local::ActionController(game) {
+}
+
+UndoController::UndoController(const UndoController &rhs) : UndoController(rhs.game){
 	assert(&game);
 }
 
@@ -29,6 +32,14 @@ Controllers::Error UndoController::execute() {
 	}
 	this->setState(Models::State::IN_GAME);
 	return result;
+}
+
+InitialGameDecition UndoController::getName() {
+	return InitialGameDecition::UNDO;
+}
+
+Controllers::ActionController& UndoController::clone() {
+	return *new UndoController(*this);
 }
 
 } /* namespace Local */

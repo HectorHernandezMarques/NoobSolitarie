@@ -11,12 +11,15 @@ class FlipController: public virtual Controllers::FlipController, public Control
 private:
 public:
 	FlipController(Models::Game &game);
+	FlipController(const FlipController &game);
 	virtual ~FlipController();
 
 	void accept(ActionControllerVisitor &actionControllerVisitor);
 	bool available();
 	Controllers::Error execute();
 
+	InitialGameDecition getName();
+	Controllers::ActionController& clone();
 };
 
 } /* namespace Local */

@@ -3,8 +3,8 @@
 namespace Controllers {
 namespace Local {
 
-InitialGameDecitionController::InitialGameDecitionController(Models::Game &game) :
-		Controllers::Local::OperationController(game) {
+InitialGameDecitionController::InitialGameDecitionController(Models::Game &game,  std::list<Controllers::ActionController*> availableCommandsNames) :
+		Controllers::Local::OperationController(game), availableCommandsNames(availableCommandsNames){
 	assert(&game);
 }
 
@@ -22,10 +22,10 @@ Controllers::Error InitialGameDecitionController::execute() {
 
 	Controllers::Error result = Controllers::Error::NO_ERROR;
 	switch (this->initialGameDecition) {
-	case InitialGameDecition::FLIP_CARDS:
+	case InitialGameDecition::FLIP:
 		this->setState(Models::State::FLIPPING_CARDS);
 		break;
-	case InitialGameDecition::MOVE_CARDS:
+	case InitialGameDecition::MOVE:
 		this->setState(Models::State::MOVING_CARDS);
 		break;
 	case InitialGameDecition::REDO:
@@ -42,6 +42,17 @@ Controllers::Error InitialGameDecitionController::execute() {
 
 void InitialGameDecitionController::setInitialGameDecition(InitialGameDecition initialGameDecition) {
 	this->initialGameDecition = initialGameDecition;
+}
+
+std::list<InitialGameDecition> InitialGameDecitionController::getAvailableCommandsNames() {
+	std::list<InitialGameDecition> result;
+	for(auto it = this->availableCommandsNames.begin(); it != this->availableCommandsNames.end(); ++it) {
+		if((*it)->available()) {
+			result.push_back((*it)->getName());
+		}
+	}
+
+	return result;
 }
 
 } /* namespace Local */

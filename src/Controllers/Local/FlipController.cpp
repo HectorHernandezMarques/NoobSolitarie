@@ -8,6 +8,10 @@ FlipController::FlipController(Models::Game &game) :
 	assert(&game);
 }
 
+FlipController::FlipController(const FlipController &rhs) : FlipController(rhs.game){
+	assert(&game);
+}
+
 FlipController::~FlipController() {
 }
 
@@ -30,6 +34,14 @@ Controllers::Error FlipController::execute() {
 	}
 	this->setState(Models::State::IN_GAME);
 	return result;
+}
+
+InitialGameDecition FlipController::getName() {
+	return InitialGameDecition::FLIP;
+}
+
+Controllers::ActionController& FlipController::clone() {
+	return *new FlipController(*this);
 }
 
 } /* namespace Local */

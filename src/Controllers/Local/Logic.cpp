@@ -3,7 +3,7 @@
 namespace Controllers {
 namespace Local {
 
-Logic::Logic() : game() {
+Logic::Logic() : game(), actionControllerBuilder(this->game){
 }
 
 Logic::~Logic() {
@@ -16,7 +16,7 @@ Controllers::Local::OperationController& Logic::getOperationController() {
 		result = new Controllers::Local::StartController(this->game);
 		break;
 	case Models::State::IN_GAME:
-		result = new Controllers::Local::InitialGameDecitionController(this->game);
+		result = new Controllers::Local::InitialGameDecitionController(this->game, this->actionControllerBuilder.getAvailableCommands());
 		break;
 	case Models::State::FLIPPING_CARDS:
 		result = new Controllers::Local::FlipController(this->game);

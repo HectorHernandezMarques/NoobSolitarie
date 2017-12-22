@@ -8,6 +8,10 @@ MoveController::MoveController(Models::Game &game) :
 	assert(&game);
 }
 
+MoveController::MoveController(const MoveController &rhs) : MoveController(rhs.game){
+	assert(&game);
+}
+
 MoveController::~MoveController() {
 }
 
@@ -18,7 +22,7 @@ void MoveController::accept(ActionControllerVisitor &actionControllerVisitor) {
 }
 
 bool MoveController::available() {
-	return this->game.isGameOver();
+	return !this->game.isGameOver();
 }
 
 Controllers::Error MoveController::execute() {
@@ -58,6 +62,14 @@ Controllers::PutCardController& MoveController::getPutCardInFoundationController
 Controllers::PutCardController& MoveController::getPutCardInTableauController(CardChoice &cardChoice){
 	this->putCardController = new Controllers::Local::PutCardInTableauController(this->game, cardChoice);
 	return *this->putCardController;
+}
+
+InitialGameDecition MoveController::getName() {
+	return InitialGameDecition::MOVE;
+}
+
+Controllers::ActionController& MoveController::clone() {
+	return *new MoveController(*this);
 }
 
 } /* namespace Local */

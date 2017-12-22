@@ -3,11 +3,8 @@
 
 #include "../Logic.h"
 #include "./InitialGameDecitionController.h"
-#include "./FlipController.h"
-#include "./MoveController.h"
 #include "./StartController.h"
-#include "./UndoController.h"
-#include "./RedoController.h"
+#include "./ActionControllerBuilder.h"
 
 namespace Controllers {
 namespace Local {
@@ -15,6 +12,7 @@ namespace Local {
 class Logic : public Controllers::Logic{
 private:
 	Models::Game game;
+	ActionControllerBuilder actionControllerBuilder;
 
 public:
 	Logic();

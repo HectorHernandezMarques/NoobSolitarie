@@ -8,6 +8,10 @@ RedoController::RedoController(Models::Game &game) :
 	assert(&game);
 }
 
+RedoController::RedoController(const RedoController &rhs) : RedoController(rhs.game){
+	assert(&game);
+}
+
 RedoController::~RedoController() {
 }
 
@@ -29,6 +33,14 @@ Controllers::Error RedoController::execute() {
 	}
 	this->setState(Models::State::IN_GAME);
 	return result;
+}
+
+InitialGameDecition RedoController::getName() {
+	return InitialGameDecition::REDO;
+}
+
+Controllers::ActionController& RedoController::clone() {
+	return *new RedoController(*this);
 }
 
 } /* namespace Local */

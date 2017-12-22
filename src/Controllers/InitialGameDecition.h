@@ -5,7 +5,7 @@
 
 namespace Controllers {
 
-enum class InitialGameDecition {FLIP_CARDS, MOVE_CARDS, REDO, UNDO};
+enum class InitialGameDecition {FLIP, MOVE, REDO, UNDO};
 
 }
 /* namespace Controllers */

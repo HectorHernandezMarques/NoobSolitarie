@@ -9,6 +9,7 @@ namespace Controllers {
 class InitialGameDecitionController : public virtual OperationController{
 public:
 	virtual void setInitialGameDecition(InitialGameDecition initialGameDecition) = 0;
+	virtual std::list<InitialGameDecition> getAvailableCommandsNames() = 0;
 };
 
 } /* namespace Controllers */

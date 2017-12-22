@@ -10,14 +10,18 @@ namespace Local {
 class InitialGameDecitionController: public virtual Controllers::InitialGameDecitionController, public Controllers::Local::OperationController {
 private:
 	InitialGameDecition initialGameDecition;
+	std::list<Controllers::ActionController*> availableCommandsNames;
+
 public:
-	InitialGameDecitionController(Models::Game &game);
+	InitialGameDecitionController(Models::Game &game, std::list<Controllers::ActionController*> availableCommandsNames);
 	virtual ~InitialGameDecitionController();
 
 	void accept(OperationControllerVisitor &operationControllerVisitor);
 	Controllers::Error execute();
 
 	void setInitialGameDecition(InitialGameDecition initialGameDecition);
+	std::list<InitialGameDecition> getAvailableCommandsNames();
+
 };
 
 } /* namespace Local */

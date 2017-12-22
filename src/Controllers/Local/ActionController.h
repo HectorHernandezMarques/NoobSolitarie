@@ -2,7 +2,7 @@
 #define CONTROLLERS_LOCAL_ACTIONCONTROLLER_H_
 
 #include "../ActionController.h"
-#include "OperationController.h"
+#include "./OperationController.h"
 #include "../ActionControllerVisitor.h"
 
 namespace Controllers {

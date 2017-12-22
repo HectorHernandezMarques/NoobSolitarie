@@ -19,6 +19,7 @@ private:
 
 public:
 	MoveController(Models::Game &game);
+	MoveController(const MoveController &game);
 	virtual ~MoveController();
 
 	void accept(ActionControllerVisitor &actionControllerVisitor);
@@ -31,6 +32,9 @@ public:
 
 	Controllers::PutCardController& getPutCardInFoundationController(CardChoice &cardChoice);
 	Controllers::PutCardController& getPutCardInTableauController(CardChoice &cardChoice);
+
+	InitialGameDecition getName();
+	Controllers::ActionController& clone();
 };
 
 } /* namespace Local */

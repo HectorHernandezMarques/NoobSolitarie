@@ -1,20 +1,20 @@
 #ifndef VIEWS_CONSOLE_NOOBSOLITARIEVIEW_H_
 #define VIEWS_CONSOLE_NOOBSOLITARIEVIEW_H_
 
-#include "../OperationControllerView.h"
-#include "StartView.h"
-#include "GameView.h"
-#include "ActionView.h"
 #include "../../Controllers/OperationControllerVisitor.h"
+#include "../OperationControllerView.h"
+#include "./ControllersViews/StartView.h"
+#include "./ControllersViews/ActionView.h"
+#include "./ControllersViews/InitialGameDecitionView.h"
 
 namespace Views {
 namespace Console {
 
 class NoobSolitarieView: public OperationControllerView, public Controllers::OperationControllerVisitor {
 private:
-	StartView startView;
-	GameView gameView;
-	ActionView actionView;
+	ControllersViews::StartView startView;
+	ControllersViews::InitialGameDecitionView gameView;
+	ControllersViews::ActionView actionView;
 
 public:
 	NoobSolitarieView();

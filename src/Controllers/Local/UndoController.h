@@ -10,11 +10,15 @@ namespace Local {
 class UndoController : public virtual Controllers::UndoController, public Controllers::Local::ActionController {
 public:
 	UndoController(Models::Game &game);
+	UndoController(const UndoController &rhs);
 	virtual ~UndoController();
 
 	void accept(ActionControllerVisitor &actionControllerVisitor);
 	bool available();
 	Controllers::Error execute();
+
+	InitialGameDecition getName();
+	Controllers::ActionController& clone();
 };
 
 } /* namespace Local */

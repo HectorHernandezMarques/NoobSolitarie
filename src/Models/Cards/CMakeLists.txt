@@ -1,4 +1,7 @@
-add_library(Cards
-        Card.cpp
-        Number.cpp
-        Suit.cpp)
+add_library(Cards)
+
+target_sources(Cards
+        PRIVATE
+            Card.cpp
+            Number.cpp
+            Suit.cpp)

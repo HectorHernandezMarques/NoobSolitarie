@@ -2,7 +2,6 @@
 /*/
 
 !/src/
-/src/cmake-build-debug/
 
 !/.gitignore
 !/README.md
